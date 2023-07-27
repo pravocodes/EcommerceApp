@@ -8,7 +8,7 @@ import { Notyf } from "notyf";
 
 const ForgotPassword = () => {
   const [email, setemail] = useState("");
-  const [newpassword, setNewpassword] = useState("");
+  const [newPassword, setNewpassword] = useState("");
   const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
@@ -26,8 +26,9 @@ const ForgotPassword = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
-        { email, answer,newpassword }
+        { email, answer, newPassword }
       );
+
       if (res && res.data && res.data.success) {
         notyf.success(res.data && res.data.message);
         navigate("/login");
@@ -36,17 +37,19 @@ const ForgotPassword = () => {
       }
     } catch (error) {
       console.log(error);
-      notyf.error("Something went Wrong");
+      notyf.error("Something went Wrong during forgetting password");
     }
   };
   return (
     <>
       <Header />
       <main className="log-back">
-        <div className="box" style={{height: "420px"}}>
+        <div className="box" style={{ height: "420px" }}>
           <span className="borderline"></span>
           <form>
-            <h2 style={{ textDecoration: "Bold", fontSize: "23px" }}>Reset Password</h2>
+            <h2 style={{ textDecoration: "Bold", fontSize: "23px" }}>
+              Reset Password
+            </h2>
             <div className="inputbox">
               <input
                 type="text"
@@ -71,7 +74,7 @@ const ForgotPassword = () => {
               <input
                 type="password"
                 required
-                value={newpassword}
+                value={newPassword}
                 onChange={(e) => setNewpassword(e.target.value)}
               />
               <span>Enter your New password</span>
@@ -88,4 +91,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-
