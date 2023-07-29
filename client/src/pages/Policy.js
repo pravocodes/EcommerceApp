@@ -8,6 +8,7 @@ const Policy = () => {
   return (
     <>
       <Header />
+      <Layout title = "EzCart - Policy"/>
       <div className="privacy-first-section">
         <h1> Privacy Policy</h1>
         <h2>Protecting Your Privacy</h2>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
+import Layout from "../components/Layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Notyf } from "notyf";
@@ -43,6 +44,7 @@ const ForgotPassword = () => {
   return (
     <>
       <Header />
+      <Layout title = "EzCart - Forgot Password"/>
       <main className="log-back">
         <div className="box" style={{ height: "420px" }}>
           <span className="borderline"></span>

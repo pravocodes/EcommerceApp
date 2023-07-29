@@ -2,13 +2,14 @@ import React from 'react'
 
 import Header from '../components/Layouts/Header'
 import Footer from '../components/Layouts/Footer'
+import Layout from '../components/Layouts/Layout'
 import './About.css'
 
 const About = () => {
   return (
     <>
    <Header/>
-    {/* <Layout title = "About Us"/> */}
+    <Layout title = "EzCart - About Us"/>
 
 
     <div>

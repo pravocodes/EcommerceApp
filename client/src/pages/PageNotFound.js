@@ -3,11 +3,14 @@ import React from "react";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import { Link } from "react-router-dom";
+import Layout from "../components/Layouts/Layout";
+
 
 const PageNotFound = () => {
   return (
     <>
       <Header />
+      <Layout title = "Page Not Found"/>
       <main
         role="main"
         style={{

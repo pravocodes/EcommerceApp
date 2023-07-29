@@ -1,11 +1,15 @@
 import React from 'react'
 import UserMenu from "../../components/Layouts/UserMenu";
 import Layout from '../../components/Layouts/Layout';
+import Header from '../../components/Layouts/Header';
+import Footer from '../../components/Layouts/Footer';
 
 const UserOrders = () => {
   return (
-    <Layout>
-      <div className="container-fluid m-3 p-3">
+    <>
+    <Layout title = "EzCart - About Us"/>
+    <Header />
+      <div className="container-fluid m-3 p-3" style={{minHeight: '100vh'}}>
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
@@ -15,7 +19,8 @@ const UserOrders = () => {
           </div>
         </div>
       </div>
-    </Layout>
+      <Footer />
+    </>
 
   );
 }

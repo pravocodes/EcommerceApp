@@ -6,6 +6,7 @@ import { Link,useNavigate , useLocation} from 'react-router-dom';
 import axios from "axios";
 import { Notyf } from "notyf";
 import { useAuth } from '../context/Auth';
+import Layout from '../components/Layouts/Layout';
 const Login = () => {
     const [email,setemail]=useState('');
     const [password,setpassword]=useState('');
@@ -50,7 +51,8 @@ const Login = () => {
   return (
     <>
     <Header/>
-        
+      
+    <Layout title = "EzCart - Login"/>
     <main className="log-back">
     <div className="box">
       <span className="borderline"></span>

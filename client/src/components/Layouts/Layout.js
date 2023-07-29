@@ -1,21 +1,24 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import  { Toaster } from "react-hot-toast";
-import "react-toastify/dist/ReactToastify.css";
-
+import {Helmet} from "react-helmet";
 const Layout = (props) => {
   return (
     <>
-      <Header />
-      <main style={{ minHeight: "100vh" }}>
-        <Toaster />
-        {props.title}
-        {props.children  }
-      </main>
-      <Footer />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="description" content={props.description} />
+        <meta name="keywords" content={props.keywords} />
+        <meta name="author" content={props.author} />
+        <title>{props.title}</title>
+      </Helmet>
     </>
   );
 };
+
+Layout.defaultProps = {
+  title: 'EzCart - Shop Now',
+  description: 'Online Shopping Website which is user friendly, easy to use, easy to buy, fast delivery, good discounts',
+  keywords: 'mern, react, node, mongodb',
+  author: 'CoffeeCoders',
+}
 
 export default Layout;

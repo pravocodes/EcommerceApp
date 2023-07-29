@@ -5,6 +5,8 @@ import AdminMenu from '../../components/Layouts/AdminMenu';
 import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
 import { Modal } from "antd";
+import Header from '../../components/Layouts/Header';
+import Footer from '../../components/Layouts/Footer';
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState();
@@ -100,8 +102,10 @@ const CreateCategory = () => {
     }
   };
   return (
-    <Layout>
-      <div className="container-fluid m-3 p-3">
+    <>
+    <Layout title = "EzCart - Create Category"/>
+    <Header />
+      <div className="container-fluid m-3 p-3" style={{minHeight:'100vh'}}>
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
@@ -168,7 +172,8 @@ const CreateCategory = () => {
           </div>
         </div>
       </div>
-    </Layout>
+      <Footer />
+    </>
   );
 }
 

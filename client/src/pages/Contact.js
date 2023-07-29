@@ -1,12 +1,13 @@
 import React from 'react'
 import './Contact.css'
-// import Layout from '../components/Layouts/Layout'
+import Layout from '../components/Layouts/Layout'
 import Header from '../components/Layouts/Header'
 import Footer from '../components/Layouts/Footer'
 const Contact = () => {
   return (
     <>
     <Header />
+    <Layout title = "EzCart - Contact Us"/>
     <div>
 	<div className="contact-container">
 		<div className="contact-box">

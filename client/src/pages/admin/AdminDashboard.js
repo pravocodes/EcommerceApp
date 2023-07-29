@@ -2,13 +2,17 @@ import React from "react";
 import Layout from "../../components/Layouts/Layout";
 import AdminMenu from "../../components/Layouts/AdminMenu";
 import { useAuth } from "../../context/Auth";
+import Header from "../../components/Layouts/Header";
+import Footer from "../../components/Layouts/Footer";
 
 const Dashboard = () => {
 
   const {auth} = useAuth();
    return (
-     <Layout>
-       <div className="container-fluid m-3 p-3">
+     <>
+     <Layout title = "EzCart - Dashboard"/>
+     <Header />
+       <div className="container-fluid m-3 p-3" style={{minHeight: '100vh'}}>
          <div className="row">
            <div className="col-md-3">
              <AdminMenu />
@@ -22,7 +26,8 @@ const Dashboard = () => {
            </div>
          </div>
        </div>
-     </Layout>
+       <Footer />
+     </>
    );
 };
 

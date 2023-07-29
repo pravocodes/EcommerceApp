@@ -6,6 +6,7 @@ import Footer from "../components/Layouts/Footer";
 import axios from "axios";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
+import Layout from "../components/Layouts/Layout";
 
 const Register = () => {
   const [name, setname] = useState("");
@@ -43,6 +44,7 @@ const Register = () => {
   return (
     <>
       <Header />
+      <Layout title = "EzCart - Register"/>
       <main className="reg-back">
         <div className="box-reg">
           <span className="borderlin-reg"></span>
