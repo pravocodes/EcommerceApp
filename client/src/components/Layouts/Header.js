@@ -3,6 +3,7 @@ import {Link,NavLink} from 'react-router-dom';
 import {FaShoppingCart} from 'react-icons/fa'
 import { useAuth } from '../../context/Auth'; 
 import { Notyf } from "notyf";
+import azlo from "./azlo.png"
 
 const notyf = new Notyf({
   duration: 2000,
@@ -41,9 +42,10 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" to="/">
-            <FaShoppingCart /> Ecommerce App
-          </Link>
+        <div className="navbar-brand" >
+            {/* <FaShoppingCart />  */}
+            <img src='https://i.postimg.cc/7LnRKCB1/Ez-Cart-Icon.png' width={90} height={40}  alt="Logo"  />
+          </div>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link " to="/">
