@@ -3,7 +3,6 @@ import {Link,NavLink} from 'react-router-dom';
 import {FaShoppingCart} from 'react-icons/fa'
 import { useAuth } from '../../context/Auth'; 
 import { Notyf } from "notyf";
-import azlo from "./azlo.png"
 
 const notyf = new Notyf({
   duration: 2000,
