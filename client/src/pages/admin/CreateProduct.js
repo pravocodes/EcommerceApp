@@ -1,8 +1,14 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import Layout from '../../components/Layouts/Layout'
 import AdminMenu from '../../components/Layouts/AdminMenu';
 
 const CreateProduct = () => {
+  const [categories,setCategories] = useState([]);
+  const [photo,setPhoto] = useState("")
+  const [price,setPrice] = useState("")
+  const [description,setDescription] = useState("")
+  const [quantity,setQuantity] = useState("")
+  const [shipping, setShipping] = useState("");
   return (
     <Layout>
       <div className="container-fluid m-3 p-3">
