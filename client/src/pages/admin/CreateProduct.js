@@ -60,7 +60,7 @@ const CreateProduct = () => {
       productData.append("price",price)
       productData.append("description",description)
       productData.append("quantity",quantity)
-      // productData.append("shipping",shipping)
+      productData.append("shipping",shipping)
       productData.append("category",category)
       productData.append("photo",photo)
 
@@ -121,7 +121,7 @@ const CreateProduct = () => {
                   <textarea type='text' value={description} placeholder='write the description' className='form-control' onChange={(e) => setDescription(e.target.value)}></textarea>
                 </div>
                 <div className='mb-3'>
-                  <input type='text' value={quantity} placeholder='write quantity' className='form-control' onChange={(e) => setQuantity(e.target.value)}></input>
+                  <input type='number' value={quantity} placeholder='write quantity' className='form-control' onChange={(e) => setQuantity(e.target.value)}></input>
                 </div>
                 <div className='mb-3'>
                   <Select bordered={false} placeholder='Select Shipping' size='large' showSearch className='form-select mb-3' onChange={(value) => {setShipping(value)}}>

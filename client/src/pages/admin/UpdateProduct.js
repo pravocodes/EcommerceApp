@@ -103,6 +103,23 @@ const UpdateProduct = () => {
         notyf.error("Something went wrong");
       }
     }
+
+    const handleDelete = async() => {
+      try{
+        let a = prompt("Type 'YES' to delete the product");
+        if (a==="YES"){
+        const {data} = await axios.delete(`${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`)
+        notyf.success("Product deleted successfully");
+        navigate('/dashboard/admin/products');}
+        else{
+          navigate('/dashboard/admin/products');
+        }
+      }
+      catch(error){
+        console.log(error);
+        notyf.error("Something went wrong");
+      }
+    } 
   return (
     <>
     <Layout title = "EzCart - Update Product"/>
@@ -153,7 +170,7 @@ const UpdateProduct = () => {
                   <textarea type='text' value={description} placeholder='write the description' className='form-control' onChange={(e) => setDescription(e.target.value)}></textarea>
                 </div>
                 <div className='mb-3'>
-                  <input type='text' value={quantity} placeholder='write quantity' className='form-control' onChange={(e) => setQuantity(e.target.value)}></input>
+                  <input type='number' value={quantity} placeholder='write quantity' className='form-control' onChange={(e) => setQuantity(e.target.value)}></input>
                 </div>
                 <div className='mb-3'>
                   <Select bordered={false} placeholder='Select Shipping' size='large' showSearch className='form-select mb-3' onChange={(value) => {setShipping(value)}}
@@ -164,6 +181,9 @@ const UpdateProduct = () => {
                 </div>
                 <div className='mb-3'>
                   <button className='btn btn-primary' onClick={handleUpdate}>Update Product</button>
+                </div>
+                <div className='mb-3'>
+                  <button className='btn btn-danger' onClick={handleDelete}>Delete Product</button>
                 </div>
               </div>
           </div>
