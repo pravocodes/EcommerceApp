@@ -135,7 +135,11 @@ const UpdateProduct = () => {
                     </div>
                   ) : (
                     <div className="text-center">
-                      <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`} alt='product_photo' height={'200px'} className='img img-responsive'></img>
+                      {
+                        id ? (
+                          <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`} alt='product_photo' height={'200px'} className='img img-responsive'></img>
+                        ) : ""
+                      }
                     </div>
                   )}
                 </div>
