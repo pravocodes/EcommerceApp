@@ -83,3 +83,8 @@ sans-serif; */
   font-size: 30px;
 }
  */
+
+ .product-link{
+  text-decoration: None !important;
+  color: black !important;
+ }
