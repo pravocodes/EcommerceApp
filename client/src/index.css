@@ -146,3 +146,8 @@ sans-serif; */
 .forgot-btn:hover {
   color: white !important;
 }
+
+ .product-link{
+  text-decoration: None !important;
+  color: black !important;
+ }
