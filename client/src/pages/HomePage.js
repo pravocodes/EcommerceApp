@@ -21,6 +21,10 @@ const HomePage = () => {
   const [categories, setCategories ]= useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(1);
+
 
   const getAllCategory = async () => {
     try {
@@ -38,19 +42,34 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllCategory();
-    // eslint-disable-next-line
+    getTotal();
   }, []);
 
   const getAllProducts = async () => {
     try{
-      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-product`);
+      setLoading(true);
+      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`);
+      setLoading(false);
       setProducts(data.products);
     }
     catch(error){
-      console.log(error)
+      console.log(error);
+      setLoading(false);
       notyf.error("somthing went wrong");
     }
   }
+
+  //get total count
+  const getTotal = async () => {
+    try{
+      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-count`)
+      setTotal(data?.total);
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     if(!checked.length && !radio.length) getAllProducts();
   },[checked.length,radio.length]);
@@ -104,10 +123,11 @@ const HomePage = () => {
                   ))}
                 </Radio.Group>
               </div>
+              {checked.length || radio.length ? <div className='d-flex flex-coloumn ms-2'>
+                <button className='btn btn-danger' onClick={() => window.location.reload()}>RESET FILTER</button>
+              </div>: ""}
           </div>
           <div className='col-md-9'>
-            {JSON.stringify(checked,null,4)}
-            {JSON.stringify(radio,null,4)}
             <h1 className='text-center' style={{fontSize:'10vh'}}>All Product</h1>
             <div className='d-flex flex-wrap'>
             {products?.map((p) => (
@@ -124,6 +144,16 @@ const HomePage = () => {
                   </div>
               ))}
             </div>
+          <div className='m-2 p-3'>
+            {products && products.length <total && (
+              <button className='btn btn-warning' onClick={(e) => {
+                e.preventDefault();
+                setPage(page + 1);
+              }}>
+                {loading ? "loading ..." : "load more"}
+              </button>
+            )}
+          </div>
           </div>
         </div>
       </div>
