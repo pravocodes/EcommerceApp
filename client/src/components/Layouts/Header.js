@@ -3,6 +3,7 @@ import {Link,NavLink} from 'react-router-dom';
 import {FaShoppingCart} from 'react-icons/fa'
 import { useAuth } from '../../context/Auth'; 
 import { Notyf } from "notyf";
+import SearchInput from '../Form/SearchInput';
 
 const notyf = new Notyf({
   duration: 2000,
@@ -46,6 +47,7 @@ const Header = () => {
             <img src='https://i.postimg.cc/7LnRKCB1/Ez-Cart-Icon.png' width={90} height={40}  alt="Logo"  />
           </div>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <SearchInput/>
             <li className="nav-item">
               <NavLink className="nav-link " to="/">
                 Home

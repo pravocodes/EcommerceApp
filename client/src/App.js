@@ -1,35 +1,39 @@
-import './App.css';
-import Register from './pages/Register';
+import "./App.css";
+import Register from "./pages/Register";
 // import Layout from './components/Layouts/Layout';
-import {Route,Routes,BrowserRouter} from 'react-router-dom';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Policy from './pages/Policy';
-import PageNotFound from './pages/PageNotFound';
-import HomePage from './pages/HomePage';
-import Login from './pages/Login';
-import Dashboard from './pages/user/Dashboard';
-import Private from './components/Layouts/route/Private'
-import ForgotPassword from './pages/ForgotPassword';
-import AdminRoute from './components/Layouts/route/AdminRoute';
-import AdminDashboard from './pages/admin/AdminDashboard'
-import CreateCategory from './pages/admin/CreateCategory';
-import CreateProduct from './pages/admin/CreateProduct';
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Policy from "./pages/Policy";
+import PageNotFound from "./pages/PageNotFound";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import Dashboard from "./pages/user/Dashboard";
+import Private from "./components/Layouts/route/Private";
+import ForgotPassword from "./pages/ForgotPassword";
+import AdminRoute from "./components/Layouts/route/AdminRoute";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import CreateCategory from "./pages/admin/CreateCategory";
+import CreateProduct from "./pages/admin/CreateProduct";
 import Users from "./pages/admin/users";
-import UserProfile from './pages/user/UserProfile';
-import UserOrders from './pages/user/UserOrders';
-import Products from './pages/admin/Products';
-import UpdateProduct from './pages/admin/UpdateProduct';
+import UserProfile from "./pages/user/UserProfile";
+import UserOrders from "./pages/user/UserOrders";
+import Products from "./pages/admin/Products";
+import UpdateProduct from "./pages/admin/UpdateProduct";
+import Search from "./pages/Search";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/dashboard" element={<Private />}>
           <Route path="user" element={<Dashboard />} />
-          <Route path="user/profile" element={<UserProfile/>} />
-          <Route path="user/orders" element={<UserOrders/>} />
+          <Route path="user/profile" element={<UserProfile />} />
+          <Route path="user/orders" element={<UserOrders />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
