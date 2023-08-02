@@ -7,7 +7,7 @@ import {Checkbox, Radio} from 'antd'
 import axios from 'axios';
 import { Prices } from '../components/prices';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-
+import { useCart } from '../context/cart';
 
 
 const notyf = new Notyf({
@@ -20,6 +20,7 @@ const notyf = new Notyf({
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [cart, setCart] = useCart();
   const [products, setProducts]  = useState([]);
   const [categories, setCategories ]= useState([]);
   const [checked, setChecked] = useState([]);
@@ -198,7 +199,10 @@ const HomePage = () => {
                     >
                       More Details
                     </button>
-                    <button className="btn btn-secondary  ms-1">
+                    <button className="btn btn-secondary  ms-1" onClick={() => 
+                      {setCart([...cart,p])
+                      localStorage.setItem('cart',JSON.stringify([...cart,p]));
+                      notyf.success("product added successfully")}}>
                       Add to Cart
                     </button>
                   </div>

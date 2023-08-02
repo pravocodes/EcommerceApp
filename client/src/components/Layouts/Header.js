@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link,NavLink} from 'react-router-dom';
+import { useCart } from '../../context/cart';
 import {FaShoppingCart} from 'react-icons/fa'
 import { useAuth } from '../../context/Auth'; 
 import { Notyf } from "notyf";
 import SearchInput from '../Form/SearchInput';
-
+import {Badge} from 'antd'
 const notyf = new Notyf({
   duration: 2000,
   position: {
@@ -13,8 +14,8 @@ const notyf = new Notyf({
   },
 });
 const Header = () => {
+  const [cart] = useCart();
   const {auth,setAuth} = useAuth();
-
   const handlelogout = () =>{
     setAuth({
       ...auth,
@@ -107,9 +108,11 @@ const Header = () => {
               </>
             )}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/shop">
-                cart(0)
-              </NavLink>
+              <Badge count={cart?.length} showZero>
+                <NavLink className="nav-link" to="/shop">
+                  Cart
+                </NavLink>
+              </Badge>
             </li>
           </ul>
         </div>

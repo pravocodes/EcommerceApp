@@ -6,14 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./context/Auth";
 import "antd/dist/reset.css";
 import { SearchProvider } from "./context/search";
+import { CartProvider } from "./context/cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
     <SearchProvider>
+      <CartProvider>
       <React.StrictMode>
         <App />
       </React.StrictMode>
+      </CartProvider>
     </SearchProvider>
   </AuthProvider>
 );
