@@ -208,7 +208,6 @@ export const productCountController = async (req, res) => {
       success: true,
       message: "page splitted successfully",
       total,
-<<<<<<< HEAD
     })
   }
   catch(error){
@@ -219,7 +218,7 @@ export const productCountController = async (req, res) => {
       error
     })
   }
-}
+};
 
 //product list based on pages
 export const productListController = async (req,res) => {
@@ -232,12 +231,8 @@ export const productListController = async (req,res) => {
       message:"pages splitted successfully",
       products,
     })
-  }
-  catch(error){
-=======
-    });
+  
   } catch (error) {
->>>>>>> b6926f4473c3a63c7a2f3a63dc74997cbc16257d
     console.log(error);
     res.status(400).send({
       success: false,
@@ -247,31 +242,7 @@ export const productListController = async (req,res) => {
   }
 };
 
-//product list based on pages
-export const productListController = async (req, res) => {
-  try {
-    const perPage = 3;
-    const page = req.params.page ? req.params.page : 1;
-    const products = await productModel
-      .find({})
-      .select("-photo")
-      .skip((page - 1) * perPage)
-      .limit(perPage)
-      .sort({ createdAt: -1 });
-    res.status(200).send({
-      success: true,
-      message: "pages splitted successfully",
-      products,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(400).send({
-      success: false,
-      message: "error during listing of pages",
-      error,
-    });
-  }
-};
+
 
 // search product
 export const searchProductController = async (req, res) => {

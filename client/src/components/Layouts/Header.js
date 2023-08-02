@@ -6,7 +6,6 @@ import { Badge } from 'antd'
 import useCategory from "../../hooks/useCategory";
 import { useAuth } from "../../context/Auth";
 import { Notyf } from "notyf";
-import SearchInput from "../Form/SearchInput";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -18,8 +17,7 @@ const notyf = new Notyf({
 const Header = () => {
   const [cart] = useCart();
   const { auth, setAuth } = useAuth();
-  const handlelogout = () => {
-    const { auth, setAuth } = useAuth();
+  
     const categories = useCategory();
 
     const handlelogout = () => {
@@ -151,7 +149,8 @@ const Header = () => {
         </div>
       </nav>
     );
-  }
-}
+                          };
+  
+
 
 export default Header;
