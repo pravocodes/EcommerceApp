@@ -78,6 +78,25 @@ const HomePage = () => {
     filterProduct();
   },[checked,radio])
 
+  const loadMore = async() => {
+    try{
+      setLoading(true)
+      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`);
+      setLoading(false);
+      setProducts(...products, ...data?.products);
+    }
+    catch(error){
+      console.log(error);
+      notyf.error("Something went wrong");
+      setLoading(false);
+    }
+  }
+
+  useEffect(()=>{
+    if (page === 1) return;
+     loadMore()
+  },[page])
+
   const handleFilter = (value,id) => {
     let all = [...checked];
     if(value){
