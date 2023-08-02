@@ -1,9 +1,10 @@
-import React from 'react';
-import {Link,NavLink} from 'react-router-dom';
-import {FaShoppingCart} from 'react-icons/fa'
-import { useAuth } from '../../context/Auth'; 
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import useCategory from "../../hooks/useCategory";
+import { useAuth } from "../../context/Auth";
 import { Notyf } from "notyf";
-import SearchInput from '../Form/SearchInput';
+import SearchInput from "../Form/SearchInput";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -13,19 +14,18 @@ const notyf = new Notyf({
   },
 });
 const Header = () => {
-  const {auth,setAuth} = useAuth();
+  const { auth, setAuth } = useAuth();
+  const categories = useCategory();
 
-  const handlelogout = () =>{
+  const handlelogout = () => {
     setAuth({
       ...auth,
-      user:null,
-      token: ""
-    })
-    localStorage.removeItem('auth');
-    notyf.success("Logout Sucessfully")
-  }
-
-  
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    notyf.success("Logout Sucessfully");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-auto">
@@ -42,22 +42,46 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div className="navbar-brand" >
+          <div className="navbar-brand">
             {/* <FaShoppingCart />  */}
-            <img src='https://i.postimg.cc/7LnRKCB1/Ez-Cart-Icon.png' width={90} height={40}  alt="Logo"  />
+            <img
+              src="https://i.postimg.cc/7LnRKCB1/Ez-Cart-Icon.png"
+              width={90}
+              height={40}
+              alt="Logo"
+            />
           </div>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <SearchInput/>
+            <SearchInput />
             <li className="nav-item">
               <NavLink className="nav-link " to="/">
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/category">
-                category
-              </NavLink>
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle"
+                to={"/categories"}
+                data-bs-toggle="dropdown"
+              >
+                Categories
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item" to={"/categories"}>
+                    All Categories
+                  </Link>
+                </li>
+                {categories?.map((c) => (
+                  <li>
+                    <Link className="dropdown-item" to={`/category/${c.slug}`}>
+                      {c.slug}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
+
             {!auth.user ? (
               <>
                 <li className="nav-item">
@@ -89,7 +113,12 @@ const Header = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <NavLink className="dropdown-item" to={`/dashboard/${auth?.user?.role===1?"admin":"user"}`}>
+                      <NavLink
+                        className="dropdown-item"
+                        to={`/dashboard/${
+                          auth?.user?.role === 1 ? "admin" : "user"
+                        }`}
+                      >
                         Dashboard
                       </NavLink>
                     </li>
@@ -116,6 +145,6 @@ const Header = () => {
       </div>
     </nav>
   );
-}
+};
 
-export default Header
+export default Header;
