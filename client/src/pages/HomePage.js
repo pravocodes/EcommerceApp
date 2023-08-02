@@ -6,7 +6,9 @@ import { Notyf } from 'notyf';
 import {Checkbox, Radio} from 'antd'
 import axios from 'axios';
 import { Prices } from '../components/prices';
-import { createSearchParams } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
+
+
 
 const notyf = new Notyf({
   duration: 2000,
@@ -17,6 +19,7 @@ const notyf = new Notyf({
 });
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [products, setProducts]  = useState([]);
   const [categories, setCategories ]= useState([]);
   const [checked, setChecked] = useState([]);
@@ -123,63 +126,104 @@ const HomePage = () => {
     <>
       <Layout />
       <Header />
-      <div style={{ minHeight: '100vh' }}>
-        <div className='row mt-3'>
-          <div className='col-md-2'>
-            <h6 className='text-center' style={{fontSize:"3vh"}}>Filter by Category</h6>
-            {categories?.map(c => (
-              <div className='d-flex flex-coloumn ms-2'>
-                <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked,c._id)}>{c.name}</Checkbox>
+      <div style={{ minHeight: "100vh" }}>
+        <div className="row mt-3">
+          <div className="col-md-2">
+            <h6 className="text-center" style={{ fontSize: "3vh" }}>
+              Filter by Category
+            </h6>
+            {categories?.map((c) => (
+              <div className="d-flex flex-coloumn ms-2">
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
               </div>
             ))}
-            <h6 className='text-center mt-4' style={{fontSize:"3vh"}}>Filter by Prices</h6>
-              <div className='d-flex flex-coloumn ms-2'>
-                <Radio.Group onChange={e => setRadio(e.target.value)}>
-                  {Prices?.map(p => (
-                    <div key={p._id}>
-                      <Radio value={p.array}>{p.name}</Radio>
-                    </div>
-                  ))}
-                </Radio.Group>
-              </div>
-              {checked.length || radio.length ? <div className='d-flex flex-coloumn ms-2'>
-                <button className='btn btn-danger' onClick={() => window.location.reload()}>RESET FILTER</button>
-              </div>: ""}
-          </div>
-          <div className='col-md-9'>
-            <h1 className='text-center' style={{fontSize:'10vh'}}>All Product</h1>
-            <div className='d-flex flex-wrap'>
-            {products?.map((p) => (
-                  <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
-                    <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} />
-                    <div className="card-body">
-                      <h5 className="card-title">{p.name}</h5>
-                      <p className="card-text">{p.description.substring(0,30)}</p>
-                      <p className="card-text">₹{p.price}</p>
-                      <p className='card-text'>Shipping: {p.shipping?"Yes":"No"}</p>
-                      <button className='btn btn-primary ms-1'>More Details</button>
-                      <button className='btn btn-secondary  ms-1'>Add to Cart</button>
-                    </div>
+            <h6 className="text-center mt-4" style={{ fontSize: "3vh" }}>
+              Filter by Prices
+            </h6>
+            <div className="d-flex flex-coloumn ms-2">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
                   </div>
-              ))}
+                ))}
+              </Radio.Group>
             </div>
-          <div className='m-2 p-3'>
-            {products && products.length <total && (
-              <button className='btn btn-warning' onClick={(e) => {
-                e.preventDefault();
-                setPage(page + 1);
-              }}>
-                {loading ? "loading ..." : "load more"}
-              </button>
+            {checked.length || radio.length ? (
+              <div className="d-flex flex-coloumn ms-2">
+                <button
+                  className="btn btn-danger"
+                  onClick={() => window.location.reload()}
+                >
+                  RESET FILTER
+                </button>
+              </div>
+            ) : (
+              ""
             )}
           </div>
+          <div className="col-md-9">
+            <h1 className="text-center" style={{ fontSize: "10vh" }}>
+              All Product
+            </h1>
+            <div className="d-flex flex-wrap">
+              {products?.map((p) => (
+                <div
+                  className="card m-2"
+                  style={{ width: "18rem" }}
+                  key={p._id}
+                >
+                  <img
+                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-text">
+                      {p.description.substring(0, 30)}
+                    </p>
+                    <p className="card-text">₹{p.price}</p>
+                    <p className="card-text">
+                      Shipping: {p.shipping ? "Yes" : "No"}
+                    </p>
+                    <button
+                      className="btn btn-primary ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button className="btn btn-secondary  ms-1">
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="m-2 p-3">
+              {products && products.length < total && (
+                <button
+                  className="btn btn-warning"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(page + 1);
+                  }}
+                >
+                  {loading ? "loading ..." : "load more"}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
       <Footer />
     </>
-
-  )
+  );
 }
 
 export default HomePage
