@@ -2,9 +2,9 @@ import fs from "fs";
 import productModel from "../models/productModel.js";
 import slugify from "slugify";
 import categoryModel from "../models/categoryModel.js";
-import braintree from 'braintree'
+import braintree from "braintree";
 import orderModel from "../models/orderModel.js";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -14,8 +14,7 @@ var gateway = new braintree.BraintreeGateway({
   merchantId: process.env.BRAINTREE_MERCHANT_ID,
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
   privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-}); 
-
+});
 
 export const createProductController = async (req, res) => {
   try {
@@ -222,30 +221,7 @@ export const productCountController = async (req, res) => {
       success: true,
       message: "page splitted successfully",
       total,
-    })
-  }
-  catch(error){
-    console.log(error)
-    res.status(400).send({
-      success:false,
-      message:"error during page splitting",
-      error
-    })
-  }
-};
-
-//product list based on pages
-export const productListController = async (req,res) => {
-  try{
-    const perPage=2;
-    const page = req.params.page ? req.params.page : 1;
-    const products = await productModel.find({}).select("-photo").skip((page-1) * perPage).limit(perPage).sort({createdAt:-1});
-    res.status(200).send({
-      success:true,
-      message:"pages splitted successfully",
-      products,
-    })
-  
+    });
   } catch (error) {
     console.log(error);
     res.status(400).send({
@@ -256,7 +232,31 @@ export const productListController = async (req,res) => {
   }
 };
 
-
+//product list based on pages
+export const productListController = async (req, res) => {
+  try {
+    const perPage = 2;
+    const page = req.params.page ? req.params.page : 1;
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      message: "pages splitted successfully",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "error during page splitting",
+      error,
+    });
+  }
+};
 
 // search product
 export const searchProductController = async (req, res) => {
@@ -351,7 +351,7 @@ export const brainTreePaymentController = async (req, res) => {
     cart.map((i) => {
       total += i.price;
     });
-    let newTransaction = gateway.transaction.sale(
+    gateway.transaction.sale(
       {
         amount: total,
         paymentMethodNonce: nonce,
@@ -360,12 +360,13 @@ export const brainTreePaymentController = async (req, res) => {
         },
       },
       function (error, result) {
+        console.log(result);
         if (result) {
-          const order = new orderModel({
+          new orderModel({
             products: cart,
-            payment: result,
+            payment: result?.transaction?.paymentReceipt,
             buyer: req.user._id,
-            status: result?.success
+            status: result?.success,
           }).save();
           res.json({ ok: true });
         } else {
