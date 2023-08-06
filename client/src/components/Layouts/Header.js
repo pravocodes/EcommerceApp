@@ -47,12 +47,15 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <div className="navbar-brand">
               {/* <FaShoppingCart />  */}
-              <img
-                src="https://i.postimg.cc/7LnRKCB1/Ez-Cart-Icon.png"
-                width={90}
-                height={40}
-                alt="Logo"
-              />
+              <Link className="nav-link" to="/">
+                <img
+                  src="https://i.postimg.cc/7LnRKCB1/Ez-Cart-Icon.png"
+                  width={90}
+                  height={40}
+                  alt="Logo"
+                >
+                  </img>
+              </Link>
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
@@ -77,7 +80,10 @@ const Header = () => {
                   </li>
                   {categories?.map((c) => (
                     <li>
-                      <Link className="dropdown-item" to={`/category/${c.slug}`}>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${c.slug}`}
+                      >
                         {c.slug}
                       </Link>
                     </li>
@@ -118,8 +124,9 @@ const Header = () => {
                       <li>
                         <NavLink
                           className="dropdown-item"
-                          to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"
-                            }`}
+                          to={`/dashboard/${
+                            auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
                         >
                           Dashboard
                         </NavLink>
