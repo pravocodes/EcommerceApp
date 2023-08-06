@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import authRoutes from "./routes/authRoute.js";
 import CategoryRoute from "./routes/CategoryRoute.js";
+import userRoute from "./routes/UserRoute.js"
 import ProductRoute from "./routes/ProductRoute.js";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -31,6 +32,7 @@ app.use(
 );
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user",userRoute);
 app.use("/api/v1/category", CategoryRoute);
 app.use("/api/v1/product", ProductRoute);
 

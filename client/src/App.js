@@ -15,7 +15,7 @@ import AdminRoute from "./components/Layouts/route/AdminRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import CreateCategory from "./pages/admin/CreateCategory";
 import CreateProduct from "./pages/admin/CreateProduct";
-import Users from "./pages/admin/users";
+import Users from "./pages/admin/Users";
 import UserProfile from "./pages/user/UserProfile";
 import UserOrders from "./pages/user/UserOrders";
 import Products from "./pages/admin/Products";
@@ -24,6 +24,7 @@ import Search from "./pages/Search";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
 import Categories from "./pages/Categories";
+import AdminOrders from "./pages/admin/AdminOrders";
 import CategoryProduct from "./pages/CategoryProduct";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/users" element={<Users />} />
+          <Route path="admin/orders" element={<AdminOrders />} />
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

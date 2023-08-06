@@ -72,4 +72,7 @@ router.get("/braintree/token", braintreeTokenController);
 // //payments
 router.post("/braintree/payment", requireSignIn, brainTreePaymentController);
 
+//delete product
+router.delete("/delete-product/:pid", deleteProductController);
+
 export default router;
