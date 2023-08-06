@@ -13,9 +13,7 @@ root.render(
   <AuthProvider>
     <SearchProvider>
       <CartProvider>
-      <React.StrictMode>
         <App />
-      </React.StrictMode>
       </CartProvider>
     </SearchProvider>
   </AuthProvider>
