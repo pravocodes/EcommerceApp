@@ -1,14 +1,13 @@
-import React,{useState,useEffect} from 'react'
-import Layout from '../components/Layouts/Layout'
-import Footer from '../components/Layouts/Footer';
-import Header from '../components/Layouts/Header';
-import { Notyf } from 'notyf';
-import {Checkbox, Radio} from 'antd'
-import axios from 'axios';
-import { Prices } from '../components/prices';
-import { createSearchParams, useNavigate } from 'react-router-dom';
-import { useCart } from '../context/cart';
-
+import React, { useState, useEffect } from "react";
+import Layout from "../components/Layouts/Layout";
+import Footer from "../components/Layouts/Footer";
+import Header from "../components/Layouts/Header";
+import { Notyf } from "notyf";
+import { Checkbox, Radio } from "antd";
+import axios from "axios";
+import { Prices } from "../components/prices";
+import { createSearchParams, useNavigate } from "react-router-dom";
+import { useCart } from "../context/cart";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -21,14 +20,13 @@ const notyf = new Notyf({
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
-  const [products, setProducts]  = useState([]);
-  const [categories, setCategories ]= useState([]);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(1);
-
 
   const getAllCategory = async () => {
     try {
@@ -50,79 +48,83 @@ const HomePage = () => {
   }, []);
 
   const getAllProducts = async () => {
-    try{
+    try {
       setLoading(true);
-      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
+      );
       setLoading(false);
       setProducts(data.products);
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
       setLoading(false);
       notyf.error("somthing went wrong");
     }
-  }
+  };
 
   //get total count
   const getTotal = async () => {
-    try{
-      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-count`)
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/product-count`
+      );
       setTotal(data?.total);
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    if(!checked.length && !radio.length) getAllProducts();
-  },[checked.length,radio.length]);
+    if (!checked.length && !radio.length) getAllProducts();
+  }, [checked.length, radio.length]);
 
   useEffect(() => {
     filterProduct();
-  },[checked,radio])
+  }, [checked, radio]);
 
-  const loadMore = async() => {
-    try{
-      setLoading(true)
-      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`);
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
+      );
       setLoading(false);
       setProducts(...products, ...data?.products);
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
       notyf.error("Something went wrong");
       setLoading(false);
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (page === 1) return;
-     loadMore()
-  },[page])
+    loadMore();
+  }, [page]);
 
-  const handleFilter = (value,id) => {
+  const handleFilter = (value, id) => {
     let all = [...checked];
-    if(value){
-      all.push(id)
-    }
-    else{
-      all = all.filter(c => c!==id)
+    if (value) {
+      all.push(id);
+    } else {
+      all = all.filter((c) => c !== id);
     }
     setChecked(all);
-  }
+  };
 
   const filterProduct = async () => {
-    try{
-      const {data} = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/product-filters/`,{checked,radio})
-      setProducts(data?.products)
-    }
-    catch(error){
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/product/product-filters/`,
+        { checked, radio }
+      );
+      setProducts(data?.products);
+    } catch (error) {
       console.log(error);
-      notyf.error("Something went Wrong")
+      notyf.error("Something went Wrong");
     }
-  }
-  
+  };
+
   return (
     <>
       <Layout />
@@ -134,7 +136,7 @@ const HomePage = () => {
               Filter by Category
             </h6>
             {categories?.map((c) => (
-              <div className="d-flex flex-coloumn ms-2">
+              <div className="d-flex flex-coloumn ms-2" key={c._id}>
                 <Checkbox
                   key={c._id}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
@@ -199,10 +201,17 @@ const HomePage = () => {
                     >
                       More Details
                     </button>
-                    <button className="btn btn-secondary  ms-1" onClick={() => 
-                      {setCart([...cart,p])
-                      localStorage.setItem('cart',JSON.stringify([...cart,p]));
-                      notyf.success("product added successfully")}}>
+                    <button
+                      className="btn btn-secondary  ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        notyf.success("product added successfully");
+                      }}
+                    >
                       Add to Cart
                     </button>
                   </div>
@@ -228,6 +237,6 @@ const HomePage = () => {
       <Footer />
     </>
   );
-}
+};
 
-export default HomePage
+export default HomePage;
