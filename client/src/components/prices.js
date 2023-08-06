@@ -1,52 +1,52 @@
 export const Prices = [
     {
         _id: 0,
-        name:"₹0 to 1600",
-        array: [0,1600]
+        name:"$0 to $20",
+        array: [0,20]
     },
     {
         _id: 1,
-        name:"₹1601 to 3200",
-        array: [1601,3200]
+        name:"$21 to $40",
+        array: [21,40]
     },
     {
         _id: 2,
-        name:"₹3201 to 4800",
-        array: [3201,4800]
+        name:"$41 to $60",
+        array: [41,60]
     },
     {
         _id: 3,
-        name:"₹4801 to 6400",
-        array: [4801,6400]
+        name:"$61 to $80",
+        array: [61,80]
     },
     {
         _id: 4,
-        name:"₹6401 to 8000",
-        array: [6401,8000]
+        name:"$81 to $100",
+        array: [81,100]
     },
     {
         _id: 5,
-        name:"₹8001 to 9600",
-        array: [8001,9600]
+        name:"$101 to $120",
+        array: [101,120]
     },
     {
         _id: 6,
-        name:"₹9601 to 11200",
-        array: [9601,11200]
+        name:"$121 to $140",
+        array: [121,140]
     },
     {
         _id: 7,
-        name:"₹11201 to 12800",
-        array: [11201,12800]
+        name:"$141 to $160",
+        array: [141,160]
     },
     {
         _id: 8,
-        name:"₹12801 to 14400",
-        array: [12801,14400]
+        name:"$161 to $180",
+        array: [161,180]
     },
     {
         _id: 9,
-        name:"₹14401 or more",
-        array: [14401,100000000]
+        name:"$181 or more",
+        array: [181,100000000]
     }
 ]
