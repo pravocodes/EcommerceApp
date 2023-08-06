@@ -4,18 +4,22 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import authRoutes from "./routes/authRoute.js";
 import CategoryRoute from "./routes/CategoryRoute.js";
-import userRoute from "./routes/UserRoute.js"
+import userRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
 import cors from "cors";
 import bodyParser from "body-parser";
-
+import path from "path";
 import connectDB from "./config/db.js";
+import { fileURLToPath } from "url";
 
 //configure env
 dotenv.config();
 
 //databse config
 connectDB();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -32,14 +36,15 @@ app.use(
 );
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/user",userRoute);
+app.use("/api/v1/user", userRoute);
 app.use("/api/v1/category", CategoryRoute);
 app.use("/api/v1/product", ProductRoute);
 
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome to ecommerce app</h1>");
-});
+app.use(express.static(path.join(__dirname, "./client/build")));
 
+app.use("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
