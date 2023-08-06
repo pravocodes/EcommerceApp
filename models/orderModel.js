@@ -13,11 +13,11 @@ const OrderSchema = new mongoose.Schema(
       type: mongoose.ObjectId,
       ref: "Users",
     },
-    // status:{
-    //     type:String,
-    //     default:"Not Process",
-    //     enum:["Not Process", "Processing", "Shipped", "Delivered", "Cancel"],
-    // },
+    status:{
+        type:String,
+        default:"Not Process",
+        enum:["Not Process", "Processing", "Shipped", "Delivered", "Cancel"],
+    },
   },
   { timestamps: true }
 );
