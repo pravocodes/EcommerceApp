@@ -83,7 +83,6 @@ const handlePayment = async () => {
     cart.map((p) => {
       a.push(p._id);
     })
-    console.log(a);
     let amount = getAmount();
     setLoading(true);
     const { nonce } = await instance.requestPaymentMethod();

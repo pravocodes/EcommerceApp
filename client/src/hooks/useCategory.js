@@ -10,7 +10,6 @@ export default function useCategory() {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API}/api/v1/category/get-allcategory`
       );
-      console.log(data.category);
       setCategories(data?.allcat);
     } catch (error) {
       console.log(error);
