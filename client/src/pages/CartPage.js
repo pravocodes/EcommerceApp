@@ -66,14 +66,30 @@ useEffect(() => {
   getToken();
 }, [auth?.token]);
 
+const getAmount = ()=>{
+  let total = 0;
+    cart?.map((item) => {
+      total = total + item.price;
+    });
+    return total;
+}
+
 //handle payment
 const handlePayment = async () => {
   try {
+    let a = [];
+    cart.map((p) => {
+      a.push(p._id);
+    })
+    console.log(a);
+    let amount = getAmount();
     setLoading(true);
     const { nonce } = await instance.requestPaymentMethod();
     const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/braintree/payment`, {
       nonce,
-      cart,
+      amount,
+      a
+      
     });
     setLoading(false);
     localStorage.removeItem("cart");

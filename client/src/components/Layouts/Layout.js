@@ -5,6 +5,7 @@ const Layout = (props) => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <meta name="description" content={props.description} />
         <meta name="keywords" content={props.keywords} />
         <meta name="author" content={props.author} />
