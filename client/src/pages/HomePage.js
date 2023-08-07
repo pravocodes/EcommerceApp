@@ -126,7 +126,7 @@ const HomePage = () => {
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
-        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
       >
         <div className="row mt-3">
           <div className="col-md-2">
@@ -168,7 +168,7 @@ const HomePage = () => {
               ""
             )}
           </div>
-          <div className="col-md-9">
+          <div className="col-md-10">
             <h1 className="text-center" style={{ fontSize: "10vh" }}>
               All Product
             </h1>
