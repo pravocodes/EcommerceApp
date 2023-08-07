@@ -191,7 +191,7 @@ const HomePage = () => {
                     <p className="card-text">
                       {p.description.substring(0, 30)}
                     </p>
-                    <p className="card-text">₹{p.price}</p>
+                    <p className="card-text">${p.price}</p>
                     <p className="card-text">
                       Shipping: {p.shipping ? "Yes" : "No"}
                     </p>
@@ -217,19 +217,6 @@ const HomePage = () => {
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="m-2 p-3">
-              {products && products.length < total && (
-                <button
-                  className="btn btn-warning"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPage(page + 1);
-                  }}
-                >
-                  {loading ? "loading ..." : "load more"}
-                </button>
-              )}
             </div>
           </div>
         </div>
