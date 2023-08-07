@@ -4,6 +4,7 @@ import Footer from "../components/Layouts/Footer";
 import Layout from "../components/Layouts/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const CategoryProduct = () => {
   const params = useParams();
@@ -29,7 +30,12 @@ const CategoryProduct = () => {
   return (
     <>
       <Header />
-      <main style={{ minHeight: "100vh" }}>
+      <motion.main
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <Layout title={"All Categories"}></Layout>
         <div className="container mt-3">
           <h4 className="text-center">Category - {category?.name}</h4>
@@ -83,7 +89,7 @@ const CategoryProduct = () => {
             </div>
           </div>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );

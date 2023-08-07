@@ -4,19 +4,22 @@ import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layouts/Layout";
-
+import { motion } from "framer-motion";
 
 const PageNotFound = () => {
   return (
     <>
       <Header />
-      <Layout title = "Page Not Found"/>
-      <main
+      <Layout title="Page Not Found" />
+      <motion.main
         role="main"
         style={{
           minHeight: "90vh",
           background: "linear-gradient(to top, #aa076b, #61045f)",
         }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
       >
         <div className="root pt-5  text-white">
           <div className="container pt-5 text-center ">
@@ -29,7 +32,7 @@ const PageNotFound = () => {
             </Link>
           </div>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );

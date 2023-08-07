@@ -8,6 +8,7 @@ import axios from "axios";
 import { Prices } from "../components/prices";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
+import { motion } from "framer-motion";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -30,9 +31,7 @@ const HomePage = () => {
 
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(
-        "/api/v1/category/get-allcategory"
-      );
+      const { data } = await axios.get("/api/v1/category/get-allcategory");
       if (data?.success) {
         setCategories(data?.allcat);
       }
@@ -50,9 +49,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(
-        `/api/v1/product/product-list/${page}`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
     } catch (error) {
@@ -65,9 +62,7 @@ const HomePage = () => {
   //get total count
   const getTotal = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/product/product-count`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-count`);
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -85,9 +80,7 @@ const HomePage = () => {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(
-        `/api/v1/product/product-list/${page}`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(...products, ...data?.products);
     } catch (error) {
@@ -114,10 +107,10 @@ const HomePage = () => {
 
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post(
-        `/api/v1/product/product-filters/`,
-        { checked, radio }
-      );
+      const { data } = await axios.post(`/api/v1/product/product-filters/`, {
+        checked,
+        radio,
+      });
       setProducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -129,7 +122,12 @@ const HomePage = () => {
     <>
       <Layout />
       <Header />
-      <div style={{ minHeight: "100vh" }}>
+      <motion.div
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="row mt-3">
           <div className="col-md-2">
             <h6 className="text-center" style={{ fontSize: "3vh" }}>
@@ -220,7 +218,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

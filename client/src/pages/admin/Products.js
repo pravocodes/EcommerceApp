@@ -6,6 +6,7 @@ import Layout from "../../components/Layouts/Layout";
 import axios from "axios";
 import { Notyf } from "notyf";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -19,9 +20,7 @@ const Products = () => {
   const [products, setProduct] = useState([]);
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/product/get-product`
-      );
+      const { data } = await axios.get(`/api/v1/product/get-product`);
       setProduct(data.products);
     } catch (error) {
       console.log(error);
@@ -38,7 +37,12 @@ const Products = () => {
     <>
       <Header />
       <Layout title="EzCart - Products" />
-      <div style={{ minHeight: "100vh" }}>
+      <motion.div
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
@@ -77,7 +81,7 @@ const Products = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

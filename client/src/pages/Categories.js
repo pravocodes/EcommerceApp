@@ -4,14 +4,19 @@ import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import Layout from "../components/Layouts/Layout";
 import useCategory from "../hooks/useCategory";
-
+import { motion } from "framer-motion";
 
 const Categories = () => {
-    const categories = useCategory();
+  const categories = useCategory();
   return (
     <>
       <Header />
-      <main style={{ minHeight: "100vh" }}>
+      <motion.main
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <Layout title={"All Categories"}></Layout>
         <div className="container">
           <div className="row">
@@ -24,11 +29,10 @@ const Categories = () => {
             ))}
           </div>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );
-}
+};
 
-export default Categories
-
+export default Categories;

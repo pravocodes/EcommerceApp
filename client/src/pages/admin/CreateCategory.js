@@ -1,12 +1,13 @@
-import React,{useEffect,useState} from 'react'
-import Layout from '../../components/Layouts/Layout'
+import React, { useEffect, useState } from "react";
+import Layout from "../../components/Layouts/Layout";
 import { Notyf } from "notyf";
-import AdminMenu from '../../components/Layouts/AdminMenu';
-import axios from 'axios';
-import CategoryForm from '../../components/Form/CategoryForm';
+import AdminMenu from "../../components/Layouts/AdminMenu";
+import axios from "axios";
+import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";
-import Header from '../../components/Layouts/Header';
-import Footer from '../../components/Layouts/Footer';
+import Header from "../../components/Layouts/Header";
+import Footer from "../../components/Layouts/Footer";
+import { motion } from "framer-motion";
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState();
@@ -26,12 +27,9 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        `/api/v1/category/create-category`,
-        {
-          name,
-        }
-      );
+      const { data } = await axios.post(`/api/v1/category/create-category`, {
+        name,
+      });
       if (data?.success) {
         notyf.success(`${name} is created`);
         getAllCategory();
@@ -46,9 +44,7 @@ const CreateCategory = () => {
 
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/category/get-allcategory`
-      );
+      const { data } = await axios.get(`/api/v1/category/get-allcategory`);
       if (data?.success) {
         setCategories(data?.allcat);
       }
@@ -103,10 +99,16 @@ const CreateCategory = () => {
   };
   return (
     <>
-    <Layout title = "EzCart - Create Category"/>
-    <Header />
-      <div className="container-fluid m-3 p-3" style={{minHeight:'100vh'}}>
-        <div className="row">
+      <Layout title="EzCart - Create Category" />
+      <Header />
+      <motion.div
+        className="container-fluid m-3 p-3"
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
+        <motion.div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
@@ -170,11 +172,11 @@ const CreateCategory = () => {
               />
             </Modal>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <Footer />
     </>
   );
-}
+};
 
-export default CreateCategory
+export default CreateCategory;

@@ -4,6 +4,7 @@ import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import Layout from "../components/Layouts/Layout";
 import "./About.css";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
@@ -11,7 +12,11 @@ const About = () => {
       <Header />
       <Layout title="EzCart - About Us" />
 
-      <div>
+      <motion.div
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div class="about-container">
           <div class="about-box">
             <div className="left"></div>
@@ -20,8 +25,8 @@ const About = () => {
                 About Us
               </h2>
               <p className="content-part">
-                Welcome to EzCart, your one-stop destination for all your
-                online shopping needs. We are dedicated to providing you with a
+                Welcome to EzCart, your one-stop destination for all your online
+                shopping needs. We are dedicated to providing you with a
                 seamless and enjoyable shopping experience right from the
                 comfort of your home. At Your BuddyKart, we understand the
                 importance of convenience and variety when it comes to online
@@ -39,13 +44,13 @@ const About = () => {
                 long-lasting connections based on trust and reliability. Your
                 feedback and suggestions are important to us as we continuously
                 improve our services to serve you better.Thank you for choosing
-                EzCart. We invite you to explore our wide range of products
-                and experience the convenience of online shopping at its best.
+                EzCart. We invite you to explore our wide range of products and
+                experience the convenience of online shopping at its best.
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

@@ -4,6 +4,7 @@ import AdminMenu from "../../components/Layouts/AdminMenu";
 import { useAuth } from "../../context/Auth";
 import Header from "../../components/Layouts/Header";
 import Footer from "../../components/Layouts/Footer";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
   const { auth } = useAuth();
@@ -11,9 +12,12 @@ const Dashboard = () => {
     <>
       <Layout title="EzCart - Dashboard" />
       <Header />
-      <div
+      <motion.div
         className="container-fluid m-3 p-3"
         style={{ minHeight: "100vh", minWidth: "200px" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
       >
         <div className="row">
           <div className="col-md-3">
@@ -27,7 +31,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

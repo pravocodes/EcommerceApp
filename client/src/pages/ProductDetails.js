@@ -4,6 +4,7 @@ import Footer from "../components/Layouts/Footer";
 import Layout from "../components/Layouts/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -42,7 +43,12 @@ const ProductDetails = () => {
     <>
       <Header />
       {/* <Layout /> */}
-      <main style={{ minHeight: "100vh" }}>
+      <motion.main
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="row container mt-2">
           <div className="col-md-6">
             <img
@@ -94,7 +100,7 @@ const ProductDetails = () => {
             ))}
           </div>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );

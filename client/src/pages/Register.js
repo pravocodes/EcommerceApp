@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./Register.css";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 import axios from "axios";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import Layout from "../components/Layouts/Layout";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const [name, setname] = useState("");
@@ -26,10 +27,14 @@ const Register = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `/api/v1/auth/register`,
-        { name, email, password, phone, address,answer }
-      );
+      const res = await axios.post(`/api/v1/auth/register`, {
+        name,
+        email,
+        password,
+        phone,
+        address,
+        answer,
+      });
       if (res && res.data && res.data.success) {
         notyf.success(res.data && res.data.message);
         navigate("/login");
@@ -44,8 +49,13 @@ const Register = () => {
   return (
     <>
       <Header />
-      <Layout title = "EzCart - Register"/>
-      <main className="reg-back">
+      <Layout title="EzCart - Register" />
+      <motion.main
+        className="reg-back"
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="box-reg">
           <span className="borderlin-reg"></span>
           <form>
@@ -122,7 +132,7 @@ const Register = () => {
             <input type="submit" value="Sign Up" onClick={handlesubmit}></input>
           </form>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );
