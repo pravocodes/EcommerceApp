@@ -34,7 +34,7 @@ const UpdateProduct = () => {
     //get single product
     const getSingleProduct = async () => {
         try{
-            const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-product/${params.slug}`);
+            const {data} = await axios.get(`/api/v1/product/get-product/${params.slug}`);
             setName(data.product.name);
             setDescription(data.product.description);
             setPrice(data.product.price);
@@ -57,7 +57,7 @@ const UpdateProduct = () => {
     const getAllCategory = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_API}/api/v1/category/get-allcategory`
+          `/api/v1/category/get-allcategory`
         );
         if (data?.success) {
           setCategories(data?.allcat);
@@ -88,7 +88,7 @@ const UpdateProduct = () => {
         productData.append("category",category)
         photo && productData.append("photo",photo)
   
-        const {data} = axios.put(`${process.env.REACT_APP_API}/api/v1/product/Update-product/${id}`, productData)
+        const {data} = axios.put(`/api/v1/product/Update-product/${id}`, productData)
         if (data?.success){
           notyf.error(data?.message)
         }
@@ -108,7 +108,7 @@ const UpdateProduct = () => {
       try{
         let a = prompt("Type 'YES' to delete the product");
         if (a==="YES"){
-        const {data} = await axios.delete(`${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`)
+        const {data} = await axios.delete(`/api/v1/product/delete-product/${id}`)
         notyf.success("Product deleted successfully");
         navigate('/dashboard/admin/products');}
         else{
@@ -154,7 +154,7 @@ const UpdateProduct = () => {
                     <div className="text-center">
                       {
                         id ? (
-                          <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`} alt='product_photo' height={'200px'} className='img img-responsive'></img>
+                          <img src={`/api/v1/product/product-photo/${id}`} alt='product_photo' height={'200px'} className='img img-responsive'></img>
                         ) : ""
                       }
                     </div>

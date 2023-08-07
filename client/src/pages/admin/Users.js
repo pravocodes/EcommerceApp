@@ -18,7 +18,7 @@ const Users = () => {
   const getAllUsers = async () => {
     try{
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/user/Allusers`
+        `/api/v1/user/Allusers`
       );
       setUser(data.users);
     }
@@ -33,7 +33,7 @@ const Users = () => {
 
   const deleteUser = async (pid) => {
     try{
-        const {data} = await axios.delete(`${process.env.REACT_APP_API}/api/v1/user/delete-user/${pid}`)
+        const {data} = await axios.delete(`/api/v1/user/delete-user/${pid}`)
         notyf.success("User deleted successfully");
         getAllUsers();
     }
