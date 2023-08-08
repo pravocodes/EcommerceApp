@@ -1,20 +1,25 @@
-import React from 'react'
-import Layout from '../../components/Layouts/Layout'
-import UserMenu from '../../components/Layouts/UserMenu'
-import { useAuth } from '../../context/Auth'
-import Header from '../../components/Layouts/Header'
-import Footer from '../../components/Layouts/Footer'
-
+import React from "react";
+import Layout from "../../components/Layouts/Layout";
+import UserMenu from "../../components/Layouts/UserMenu";
+import { useAuth } from "../../context/Auth";
+import Header from "../../components/Layouts/Header";
+import Footer from "../../components/Layouts/Footer";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
-  
-  const {auth} =useAuth();
+  const { auth } = useAuth();
 
   return (
     <>
-    <Layout title = "EzCart - Dashboard"/>
-    <Header />
-      <div className="container-fluid m-3 p-3" style={{minHeight:'100vh'}}>
+      <Layout title="EzCart - Dashboard" />
+      
+      <motion.div
+        className="container-fluid m-3 p-3"
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
@@ -26,10 +31,10 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
-    <Footer />
+      </motion.div>
+      <Footer />
     </>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

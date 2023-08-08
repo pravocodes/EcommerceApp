@@ -1,17 +1,16 @@
-import React,{useState ,useEffect}from 'react';
+import React, { useState, useEffect } from "react";
 
-import Layout from '../../components/Layouts/Layout';
-import UserMenu from '../../components/Layouts/UserMenu'
-import Header from '../../components/Layouts/Header';
-import Footer from '../../components/Layouts/Footer';
-import { useAuth } from '../../context/Auth';
-import axios from 'axios';
-import { Notyf } from 'notyf';
-import { Link } from 'react-router-dom';
+import Layout from "../../components/Layouts/Layout";
+import UserMenu from "../../components/Layouts/UserMenu";
+import Header from "../../components/Layouts/Header";
+import Footer from "../../components/Layouts/Footer";
+import { useAuth } from "../../context/Auth";
+import axios from "axios";
+import { Notyf } from "notyf";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 const UserProfile = () => {
-
-  const {auth ,setAuth} =useAuth()
-
+  const { auth, setAuth } = useAuth();
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -26,32 +25,31 @@ const UserProfile = () => {
     },
   });
 
-useEffect(()=>{
-  const{email,name,phone,address,password} = auth?.user
-  setName(name);
-  setPhone(phone);
-  setEmail(email);
-  setAddress(address);
-},[auth?.user]);
+  useEffect(() => {
+    const { email, name, phone, address, password } = auth?.user;
+    setName(name);
+    setPhone(phone);
+    setEmail(email);
+    setAddress(address);
+  }, [auth?.user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.put(
+      const { data } = await axios.put(
         `/api/v1/auth/profile`,
-        { name, email, password, phone, address, }
+        { name, email, password, phone, address }
         // answer was removed in thee video
       );
-     
-      if (data?.error ){
-        notyf.error(data?.error)
-      }
-      else{
-        setAuth({...auth, user: data?.updatedUser});
-        let ls = localStorage.getItem("auth")
-        ls = JSON.parse(ls)
-        ls.user = data.updatedUser
-        localStorage.setItem('auth',JSON.stringify(ls));
+
+      if (data?.error) {
+        notyf.error(data?.error);
+      } else {
+        setAuth({ ...auth, user: data?.updatedUser });
+        let ls = localStorage.getItem("auth");
+        ls = JSON.parse(ls);
+        ls.user = data.updatedUser;
+        localStorage.setItem("auth", JSON.stringify(ls));
         notyf.success("Profile Updated Successfully");
       }
       // if (res && res.data && res.data.success) {
@@ -67,9 +65,14 @@ useEffect(()=>{
   };
   return (
     <>
-    <Header/>
-    <Layout title = "Your Profile"/>
-    <div className="container-fluid m-3 p-3 dashboard">
+  
+      <Layout title="Your Profile" />
+      <motion.div
+        className="container-fluid m-3 p-3 dashboard"
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
@@ -138,12 +141,11 @@ useEffect(()=>{
             </div>
           </div>
         </div>
-      </div>
-      
+      </motion.div>
+
       <Footer />
     </>
   );
-}
+};
 
-export default UserProfile
- 
+export default UserProfile;

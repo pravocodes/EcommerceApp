@@ -8,6 +8,7 @@ import Layout from "../components/Layouts/Layout";
 import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
 import { Notyf } from "notyf";
+import { motion } from "framer-motion";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -56,9 +57,7 @@ const CartPage = () => {
   //get payment gateway token
   const getToken = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/product/braintree/token`
-      );
+      const { data } = await axios.get(`/api/v1/product/braintree/token`);
       setClientToken(data?.clientToken);
     } catch (error) {
       console.log(error);
@@ -68,46 +67,50 @@ const CartPage = () => {
     getToken();
   }, [auth?.token]);
 
-const getAmount = ()=>{
-  let total = 0;
+  const getAmount = () => {
+    let total = 0;
     cart?.map((item) => {
       total = total + item.price;
     });
     return total;
-}
+  };
 
-//handle payment
-const handlePayment = async () => {
-  try {
-    let a = [];
-    cart.map((p) => {
-      a.push(p._id);
-    })
-    let amount = getAmount();
-    setLoading(true);
-    const { nonce } = await instance.requestPaymentMethod();
-    const { data } = await axios.post(`/api/v1/product/braintree/payment`, {
-      nonce,
-      amount,
-      a
-      
-    });
-    setLoading(false);
-    localStorage.removeItem("cart");
-    setCart([]);
-    navigate("/dashboard/user/orders");
-    notyf.success("Payment Completed Successfully ");
-  } catch (error) {
-    console.log(error);
-    setLoading(false);
-  }
-};
+  //handle payment
+  const handlePayment = async () => {
+    try {
+      let a = [];
+      cart.map((p) => {
+        a.push(p._id);
+      });
+      let amount = getAmount();
+      setLoading(true);
+      const { nonce } = await instance.requestPaymentMethod();
+      const { data } = await axios.post(`/api/v1/product/braintree/payment`, {
+        nonce,
+        amount,
+        a,
+      });
+      setLoading(false);
+      localStorage.removeItem("cart");
+      setCart([]);
+      navigate("/dashboard/user/orders");
+      notyf.success("Payment Completed Successfully ");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <>
       <Header />
       <Layout title="EzCart - Cart" />
 
-      <main style={{ minHeight: "100vh" }}>
+      <motion.main
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -219,7 +222,7 @@ const handlePayment = async () => {
             </div>
           </div>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );

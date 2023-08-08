@@ -6,6 +6,7 @@ import Layout from "../components/Layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Notyf } from "notyf";
+import { motion } from "framer-motion";
 
 const ForgotPassword = () => {
   const [email, setemail] = useState("");
@@ -25,10 +26,11 @@ const ForgotPassword = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `/api/v1/auth/forgot-password`,
-        { email, answer, newPassword }
-      );
+      const res = await axios.post(`/api/v1/auth/forgot-password`, {
+        email,
+        answer,
+        newPassword,
+      });
 
       if (res && res.data && res.data.success) {
         notyf.success(res.data && res.data.message);
@@ -43,9 +45,14 @@ const ForgotPassword = () => {
   };
   return (
     <>
-      <Header />
-      <Layout title = "EzCart - Forgot Password"/>
-      <main className="log-back">
+      
+      <Layout title="EzCart - Forgot Password" />
+      <motion.main
+        className="log-back"
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+      >
         <div className="box" style={{ height: "420px" }}>
           <span className="borderline"></span>
           <form>
@@ -86,7 +93,7 @@ const ForgotPassword = () => {
             <input type="submit" value="Reset" onClick={handlesubmit}></input>
           </form>
         </div>
-      </main>
+      </motion.main>
       <Footer />
     </>
   );

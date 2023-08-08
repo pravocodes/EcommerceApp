@@ -9,6 +9,7 @@ import { Prices } from "../components/prices";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import "./Homepage.css";
+import { motion } from "framer-motion";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -18,7 +19,7 @@ const notyf = new Notyf({
   },
 });
 
-const HomePage = () => {
+const HomePage = (props) => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
@@ -31,9 +32,7 @@ const HomePage = () => {
 
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(
-        "/api/v1/category/get-allcategory"
-      );
+      const { data } = await axios.get("/api/v1/category/get-allcategory");
       if (data?.success) {
         setCategories(data?.allcat);
       }
@@ -51,9 +50,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(
-        `/api/v1/product/product-list/${page}`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
     } catch (error) {
@@ -66,9 +63,7 @@ const HomePage = () => {
   //get total count
   const getTotal = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/product/product-count`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-count`);
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -86,9 +81,7 @@ const HomePage = () => {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(
-        `/api/v1/product/product-list/${page}`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(...products, ...data?.products);
     } catch (error) {
@@ -115,10 +108,10 @@ const HomePage = () => {
 
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post(
-        `/api/v1/product/product-filters/`,
-        { checked, radio }
-      );
+      const { data } = await axios.post(`/api/v1/product/product-filters/`, {
+        checked,
+        radio,
+      });
       setProducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -129,24 +122,37 @@ const HomePage = () => {
   return (
     <>
       <Layout />
-      <Header />
-      <div style={{ minHeight: "100vh" }}>
+      <motion.div
+        className={`bg-${props.mode} pt-3`}
+        style={{ minHeight: "100vh" }}
+        intial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+      >
         <div className="row mt-3">
-          <div >
+<div >
 
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> FILTERS </button>
 
+          <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> FILTERS </button>
+          </div>
           <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <h6 className="text-center" style={{ fontSize: "3vh" }}>
+                <h6  className={`text-center text-${
+                props.mode === "light" ? "dark" : "light"
+              }`} style={{ fontSize: "3vh" }}>
                 <b><u>Filter by Category</u></b>
                 </h6>
+          <div >
+      
             {categories?.map((c) => (
               <div className="d-flex flex-coloumn ms-2" key={c._id}>
                 <Checkbox
+                  className={`text-${
+                    props.mode === "light" ? "dark" : "light"
+                  }`}
                   key={c._id}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
                 >
@@ -154,14 +160,23 @@ const HomePage = () => {
                 </Checkbox>
               </div>
             ))}
-            <h6 className="text-center mt-4" style={{ fontSize: "3vh" }}>
+            <h6 className={`text-center mt-4 text-${
+                props.mode === "light" ? "dark" : "light"
+              }`} style={{ fontSize: "3vh" }}>
             <b><u>Filter by Prices</u></b>
-            </h6>
+          </h6>
             <div className="d-flex flex-coloumn ms-2">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((p) => (
                   <div key={p._id}>
-                    <Radio value={p.array}>{p.name}</Radio>
+                    <Radio
+                      className={`text-${
+                        props.mode === "light" ? "dark" : "light"
+                      }`}
+                      value={p.array}
+                    >
+                      {p.name}
+                    </Radio>
                   </div>
                 ))}
               </Radio.Group>
@@ -207,10 +222,12 @@ const HomePage = () => {
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+           
+            
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
                 <div
-                  className="card m-2"
+                  className={`card m-2 bg-${props.mode}`}
                   style={{ width: "17rem" }}
                   key={p._id}
                 >
@@ -219,12 +236,16 @@ const HomePage = () => {
                     className="card-img-top"
                     alt={p.name}
                   />
-                  <div className="card-body">
-                    <h5 className="card-title" >{p.name}</h5>
-                    <p className="card-text">
-                      {/* {p.description.substring(0, 30)} */}
-                    </p>
-                    <p className="card-text" style={{fontWeight:"600"}}>${p.price}</p>
+                  <div
+                    className={`card-body text-${
+                      props.mode === "light" ? "dark" : "light"
+                    }`}
+                  >
+                    <h5 className="card-title">{p.name}</h5>
+                    {/* <p className="card-text">
+                      {p.description.substring(0, 30)}
+                    </p> */}
+                    <p className="card-text">${p.price}</p>
                     <p className="card-text">
                       Shipping: {p.shipping ? "Yes" : "No"}
                     </p>
@@ -253,7 +274,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

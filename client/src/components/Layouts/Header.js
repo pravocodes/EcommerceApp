@@ -14,7 +14,7 @@ const notyf = new Notyf({
     y: "top",
   },
 });
-const Header = () => {
+const Header = (props) => {
   const [cart] = useCart();
   const { auth, setAuth } = useAuth();
 
@@ -31,7 +31,9 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary mb-auto">
+    <nav
+      className={`navbar navbar-expand-lg  navbar-${props.mode} bg-${props.mode}`}
+    >
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -148,6 +150,22 @@ const Header = () => {
               </Badge>
             </li>
           </ul>
+        </div>
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+            onClick={props.ChangeMode}
+          />
+          <label
+            className={`form-check-label text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+            htmlFor="flexSwitchCheckDefault"
+          >
+            Switch to Dark Mode
+          </label>
         </div>
       </div>
     </nav>
