@@ -1,0 +1,23 @@
+.carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      /* Replace "red" with your desired arrow color */
+      background-color: black;
+    }
+
+    /* Optionally, you can change the arrow size and other properties */
+    .carousel-control-prev-icon {
+      background-size: 30px 30px;
+      width: 45px;
+      height: 45px;
+    }
+
+    .carousel-control-next-icon {
+      background-size: 30px 30px;
+      width: 45px;
+      height: 45px;
+    }
+
+    .custom-hr {
+        /* border: 0; Remove the default border */
+        border-top: 2px solid black; /* Add a 2px solid black top border */
+      }

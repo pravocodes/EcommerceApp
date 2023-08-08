@@ -8,6 +8,7 @@ import axios from "axios";
 import { Prices } from "../components/prices";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
+import "./Homepage.css";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -131,10 +132,18 @@ const HomePage = () => {
       <Header />
       <div style={{ minHeight: "100vh" }}>
         <div className="row mt-3">
-          <div className="col-md-2">
-            <h6 className="text-center" style={{ fontSize: "3vh" }}>
-              Filter by Category
-            </h6>
+          <div >
+
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> FILTERS </button>
+
+          <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h6 className="text-center" style={{ fontSize: "3vh" }}>
+                <b><u>Filter by Category</u></b>
+                </h6>
             {categories?.map((c) => (
               <div className="d-flex flex-coloumn ms-2" key={c._id}>
                 <Checkbox
@@ -146,7 +155,7 @@ const HomePage = () => {
               </div>
             ))}
             <h6 className="text-center mt-4" style={{ fontSize: "3vh" }}>
-              Filter by Prices
+            <b><u>Filter by Prices</u></b>
             </h6>
             <div className="d-flex flex-coloumn ms-2">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
@@ -169,16 +178,40 @@ const HomePage = () => {
             ) : (
               ""
             )}
+  </div>
+</div>
+
+
+            
           </div>
-          <div className="col-md-9">
-            <h1 className="text-center" style={{ fontSize: "10vh" }}>
-              All Product
-            </h1>
+          <div className="col-md-12">
+          <hr class="custom-hr mb-0"/> 
+          <div id="carouselExampleAutoplaying" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner ">
+    <div class="carousel-item active">
+      <img src="https://i.postimg.cc/ryhm3P0f/Untitled-1.png" class="d-block img-fluid mx-auto" alt="Carousel-1" />
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/mrNBpt6b/carousel-1.jpg" class="d-block  mx-auto" alt="Carousel-2" />
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/HWrFVr4V/carousel-3.webp" class="d-block  mx-auto" alt="Carousel-3"/>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
                 <div
                   className="card m-2"
-                  style={{ width: "18rem" }}
+                  style={{ width: "17rem" }}
                   key={p._id}
                 >
                   <img
@@ -187,11 +220,11 @@ const HomePage = () => {
                     alt={p.name}
                   />
                   <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title" >{p.name}</h5>
                     <p className="card-text">
-                      {p.description.substring(0, 30)}
+                      {/* {p.description.substring(0, 30)} */}
                     </p>
-                    <p className="card-text">${p.price}</p>
+                    <p className="card-text" style={{fontWeight:"600"}}>${p.price}</p>
                     <p className="card-text">
                       Shipping: {p.shipping ? "Yes" : "No"}
                     </p>
