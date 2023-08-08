@@ -27,18 +27,32 @@ import Categories from "./pages/Categories";
 import AdminOrders from "./pages/admin/AdminOrders";
 import CategoryProduct from "./pages/CategoryProduct";
 import { AnimatePresence } from "framer-motion";
+import Header from "./components/Layouts/Header";
 
 const AnimatedRoute = () => {
   const location = useLocation();
+  const [mode, setmode] = React.useState("light");
+
+  const ChangeMode = () => {
+    if (mode === "light") {
+      setmode("dark");
+    } else {
+      setmode("light");
+    }
+  };
   return (
     <AnimatePresence>
+      <Header mode={mode} ChangeMode={ChangeMode} />
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage mode={mode} />} />
         <Route path="/search" element={<Search />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/shop" element={<CartPage />} />
-        <Route path="/category/:slug" element={<CategoryProduct />} />
+        <Route
+          path="/category/:slug"
+          element={<CategoryProduct mode={mode} />}
+        />
         <Route path="/dashboard" element={<Private />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/profile" element={<UserProfile />} />

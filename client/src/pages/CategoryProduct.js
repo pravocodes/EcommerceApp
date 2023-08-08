@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-const CategoryProduct = () => {
+const CategoryProduct = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -29,8 +29,8 @@ const CategoryProduct = () => {
 
   return (
     <>
-      <Header />
       <motion.main
+        className={`bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
@@ -38,14 +38,26 @@ const CategoryProduct = () => {
       >
         <Layout title={"All Categories"}></Layout>
         <div className="container mt-3">
-          <h4 className="text-center">Category - {category?.name}</h4>
-          <h6 className="text-center">{products?.length} result found </h6>
+          <h4
+            className={`text-center text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+          >
+            Category - {category?.name}
+          </h4>
+          <h6
+            className={`text-center text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+          >
+            {products?.length} result found{" "}
+          </h6>
           <div className="row">
-            <div className="col-md-9 offset-1">
+            <div className="col-md-12 ">
               <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                   <div
-                    className="card m-2"
+                    className={`card m-2 bg-${props.mode}`}
                     style={{ width: "18rem" }}
                     key={p._id}
                   >
@@ -54,21 +66,27 @@ const CategoryProduct = () => {
                       className="card-img-top"
                       alt={p.name}
                     />
-                    <div className="card-body">
+                    <div
+                      className={`card-body text-${
+                        props.mode === "light" ? "dark" : "light"
+                      }`}
+                    >
                       <h5 className="card-title">{p.name}</h5>
                       <p className="card-text">
                         {p.description.substring(0, 30)}...
                       </p>
                       <p className="card-text"> $ {p.price}</p>
-                      <button
-                        className="btn btn-primary ms-1"
-                        onClick={() => navigate(`/product/${p.slug}`)}
-                      >
-                        More Details
-                      </button>
-                      <button className="btn btn-secondary ms-1">
-                        ADD TO CART
-                      </button>
+                      <div className="d-flex justify-content-between">
+                        <button
+                          className="btn btn-primary "
+                          onClick={() => navigate(`/product/${p.slug}`)}
+                        >
+                          More Details
+                        </button>
+                        <button className="btn btn-secondary pl-2 ">
+                          ADD TO CART
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}

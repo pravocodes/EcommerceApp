@@ -41,7 +41,6 @@ const ProductDetails = () => {
   };
   return (
     <>
-      <Header />
       {/* <Layout /> */}
       <motion.main
         style={{ minHeight: "100vh" }}
