@@ -6,12 +6,12 @@ import Layout from "../components/Layouts/Layout";
 import useCategory from "../hooks/useCategory";
 import { motion } from "framer-motion";
 
-const Categories = () => {
+const Categories = (props) => {
   const categories = useCategory();
   return (
     <>
-      <Header />
       <motion.main
+        className={`bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}

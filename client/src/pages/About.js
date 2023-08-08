@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <>
-      <Header />
+      
       <Layout title="EzCart - About Us" />
 
       <motion.div

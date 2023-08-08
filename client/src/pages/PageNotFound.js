@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const PageNotFound = () => {
   return (
     <>
-      <Header />
+      
       <Layout title="Page Not Found" />
       <motion.main
         role="main"

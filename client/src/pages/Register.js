@@ -48,7 +48,6 @@ const Register = () => {
   };
   return (
     <>
-      <Header />
       <Layout title="EzCart - Register" />
       <motion.main
         className="reg-back"

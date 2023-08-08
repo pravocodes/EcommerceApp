@@ -46,7 +46,7 @@ const AnimatedRoute = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomePage mode={mode} />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories" element={<Categories mode={mode} />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/shop" element={<CartPage />} />
         <Route
@@ -59,13 +59,13 @@ const AnimatedRoute = () => {
           <Route path="user/orders" element={<UserOrders />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
-          <Route path="admin" element={<AdminDashboard />} />
-          <Route path="admin/create-category" element={<CreateCategory />} />
+          <Route path="admin" element={<AdminDashboard mode={mode} />} />
+          <Route path="admin/create-category" element={<CreateCategory mode={mode}/>} />
           <Route path="admin/create-product" element={<CreateProduct />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/users" element={<Users />} />
-          <Route path="admin/orders" element={<AdminOrders />} />
+          <Route path="admin/orders" element={<AdminOrders mode={mode} />} />
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

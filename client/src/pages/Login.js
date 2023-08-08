@@ -47,8 +47,6 @@ const Login = () => {
   };
   return (
     <>
-      <Header />
-
       <Layout title="EzCart - Login" />
       <motion.main
         className="log-back"

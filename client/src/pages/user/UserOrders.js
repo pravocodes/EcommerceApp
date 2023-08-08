@@ -26,7 +26,7 @@ const UserOrders = () => {
   return (
     <>
       <Layout title="EzCart - About Us" />
-      <Header />
+      
       <motion.main
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}

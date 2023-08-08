@@ -79,7 +79,7 @@ const CreateProduct = () => {
   return (
     <>
       <Layout title="EzCart - Create Product" />
-      <Header />
+      
       <motion.div
         className="container-fluid m-3 p-3"
         style={{ minHeight: "100vh" }}

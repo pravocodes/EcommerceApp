@@ -9,7 +9,7 @@ import Header from "../../components/Layouts/Header";
 import Footer from "../../components/Layouts/Footer";
 import { motion } from "framer-motion";
 
-const CreateCategory = () => {
+const CreateCategory = (props) => {
   const [categories, setCategories] = useState();
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
@@ -100,9 +100,9 @@ const CreateCategory = () => {
   return (
     <>
       <Layout title="EzCart - Create Category" />
-      <Header />
+
       <motion.div
-        className="container-fluid m-3 p-3"
+        className={`container-fluid  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}

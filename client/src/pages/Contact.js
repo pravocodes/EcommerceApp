@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const Contact = () => {
   return (
     <>
-      <Header />
+     
       <Layout title="EzCart - Contact Us" />
       <motion.div
         intial={{ width: 0 }}

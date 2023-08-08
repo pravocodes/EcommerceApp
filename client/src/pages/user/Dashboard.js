@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <>
       <Layout title="EzCart - Dashboard" />
-      <Header />
+      
       <motion.div
         className="container-fluid m-3 p-3"
         style={{ minHeight: "100vh" }}

@@ -65,7 +65,7 @@ const UserProfile = () => {
   };
   return (
     <>
-      <Header />
+  
       <Layout title="Your Profile" />
       <motion.div
         className="container-fluid m-3 p-3 dashboard"

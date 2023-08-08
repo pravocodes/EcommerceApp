@@ -8,7 +8,7 @@ const Search = () => {
   const [values, setValues] = useSearch();
   return (
     <>
-      <Header />
+      
       <Layout title={"Search results"} />
       <main style={{ minHeight: "100vh" }}>
         <div className="container">

@@ -35,7 +35,7 @@ const Products = () => {
 
   return (
     <>
-      <Header />
+      
       <Layout title="EzCart - Products" />
       <motion.div
         style={{ minHeight: "100vh" }}

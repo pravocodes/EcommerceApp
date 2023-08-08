@@ -18,7 +18,7 @@ const notyf = new Notyf({
   },
 });
 
-const AdminOrders = () => {
+const AdminOrders = (props) => {
   const [status, setStatus] = useState([
     "Not Process",
     "Processing",
@@ -55,8 +55,9 @@ const AdminOrders = () => {
   return (
     <>
       <Layout title={"All Orders Data"} />
-      <Header />
+
       <motion.main
+        className={`  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
