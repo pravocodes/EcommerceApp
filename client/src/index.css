@@ -5,7 +5,15 @@
   margin: 0px;
   box-sizing: border-box;
 }
-
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px gray, 0 2px 4px gray;
+}
+.card{
+  background: #fff;
+  box-shadow: 0 5px 10px gray, 0 2px 4px gray;
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
 /* font-family: 'Playfair Display',
 serif;
 font-family: 'Poppins',

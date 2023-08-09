@@ -6,6 +6,9 @@ import { Badge } from "antd";
 import useCategory from "../../hooks/useCategory";
 import { useAuth } from "../../context/Auth";
 import { Notyf } from "notyf";
+import { ReactComponent as Sun } from "./Sun.svg";
+import { ReactComponent as Moon } from "./Moon.svg";
+import "./DarkMode.css";
 
 const notyf = new Notyf({
   duration: 2000,
@@ -122,9 +125,8 @@ const Header = (props) => {
                     <li>
                       <NavLink
                         className="dropdown-item"
-                        to={`/dashboard/${
-                          auth?.user?.role === 1 ? "admin" : "user"
-                        }`}
+                        to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
                       >
                         Dashboard
                       </NavLink>
@@ -151,20 +153,17 @@ const Header = (props) => {
             </li>
           </ul>
         </div>
-        <div className="form-check form-switch">
+        <div className='dark_mode'>
           <input
-            className="form-check-input"
-            type="checkbox"
-            id="flexSwitchCheckDefault"
-            onClick={props.ChangeMode}
+            className='dark_mode_input'
+            type='checkbox'
+            id='flexSwitchCheckDefault'
+            onChange={props.ChangeMode}
           />
-          <label
-            className={`form-check-label text-${
-              props.mode === "light" ? "dark" : "light"
-            }`}
-            htmlFor="flexSwitchCheckDefault"
-          >
-            Switch to Dark Mode
+          <label className={`dark_mode_label form-check-label text-${props.mode === "light" ? "dark" : "light"
+            }`} for='flexSwitchCheckDefault'>
+            <Sun />
+            <Moon />
           </label>
         </div>
       </div>
