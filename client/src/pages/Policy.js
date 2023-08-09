@@ -38,10 +38,10 @@ const Policy = () => {
             policy .
           </p>
           <div className="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                 <button
-                  class="accordion-button"
+                  className="accordion-button"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#panelsStayOpen-collapseOne"
@@ -53,10 +53,10 @@ const Policy = () => {
               </h2>
               <div
                 id="panelsStayOpen-collapseOne"
-                class="accordion-collapse collapse show"
+                className="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingOne"
               >
-                <div class="accordion-body">
+                <div className="accordion-body">
                   <p className="inner-parapraph">
                     A privacy policy is a legal document that explains how a
                     company or EZ Cart collects, uses, and shares personal
@@ -68,10 +68,10 @@ const Policy = () => {
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
                 <button
-                  class="accordion-button collapsed"
+                  className="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#panelsStayOpen-collapseTwo"
@@ -83,10 +83,10 @@ const Policy = () => {
               </h2>
               <div
                 id="panelsStayOpen-collapseTwo"
-                class="accordion-collapse collapse"
+                className="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingTwo"
               >
-                <div class="accordion-body">
+                <div className="accordion-body">
                   <p className="inner-parapraph">
                     You can access and manage your data, such as your content,
                     order history and communication preferences, in Your
@@ -98,10 +98,10 @@ const Policy = () => {
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingThree">
                 <button
-                  class="accordion-button collapsed"
+                  className="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#panelsStayOpen-collapseThree"
@@ -113,10 +113,10 @@ const Policy = () => {
               </h2>
               <div
                 id="panelsStayOpen-collapseThree"
-                class="accordion-collapse collapse"
+                className="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingThree"
               >
-                <div class="accordion-body">
+                <div className="accordion-body">
                   <p className="inner-parapraph">
                     There are a number of ways you provide us with data; for
                     example, when you buy something, provide a delivery address,
@@ -131,10 +131,10 @@ const Policy = () => {
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingFour">
                 <button
-                  class="accordion-button collapsed"
+                  className="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#panelsStayOpen-collapseFour"
@@ -146,10 +146,10 @@ const Policy = () => {
               </h2>
               <div
                 id="panelsStayOpen-collapseFour"
-                class="accordion-collapse collapse"
+                className="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingFour"
               >
-                <div class="accordion-body">
+                <div className="accordion-body">
                   <p className="inner-parapraph">
                     Any time data moves between your devices or our databases,
                     we encrypt it to keep it secure. Protecting information

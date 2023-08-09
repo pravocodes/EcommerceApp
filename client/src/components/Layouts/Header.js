@@ -107,7 +107,7 @@ const Header = (props) => {
               </>
             ) : (
               <>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <NavLink
                     className="nav-link dropdown-toggle"
                     to="/"
@@ -119,7 +119,7 @@ const Header = (props) => {
                     {auth?.user?.name}
                   </NavLink>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
@@ -161,7 +161,7 @@ const Header = (props) => {
             onChange={props.ChangeMode}
           />
           <label className={`dark_mode_label form-check-label text-${props.mode === "light" ? "dark" : "light"
-            }`} for='flexSwitchCheckDefault'>
+            }`} htmlFor='flexSwitchCheckDefault'>
             <Sun />
             <Moon />
           </label>
