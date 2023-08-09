@@ -123,172 +123,108 @@ const HomePage = (props) => {
     <>
       <Layout />
       <motion.div
-        className={`bg-${props.mode} pt-3 `}
+        className={`bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
         exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
       >
-        <div className="row mt-3" style={{ maxWidth: "1525px" }}>
-          <div>
-            <button
-              className="btn btn-primary "
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasWithBothOptions"
-              aria-controls="offcanvasWithBothOptions"
-            >
-              {" "}
-              FILTERS{" "}
-            </button>
+        <div className="row mt-3">
+<div >
+
+
+          <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> FILTERS </button>
           </div>
-          <div
-            className={`offcanvas offcanvas-start bg-${props.mode} text-light`}
-            data-bs-scroll="true"
-            tabIndex="-1"
-            id="offcanvasWithBothOptions"
-            aria-labelledby="offcanvasWithBothOptionsLabel"
-          >
-            <div className="offcanvas-header">
-              <button
-                type="button"
-                className={` btn-close btn-close-${
-                  props.mode === "light" ? "dark" : "white"
-                }`}
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
+          <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div className="offcanvas-body">
-              <h6
-                // className={`text-center text-${
-                //   props.mode === "light" ? "dark" : "light"
-                // }`}
-                style={{ fontSize: "3vh" }}
-              >
-                <b>
-                  <u
-                    className={`text-center text-${
-                      props.mode === "light" ? "dark" : "light"
-                    }`}
-                  >
-                    Filter by Category
-                  </u>
-                </b>
-              </h6>
-              <div>
-                {categories?.map((c) => (
-                  <div className="d-flex flex-coloumn ms-2" key={c._id}>
-                    <Checkbox
+            <div class="offcanvas-body">
+                <h6  className={`text-center text-${
+                props.mode === "light" ? "dark" : "light"
+              }`} style={{ fontSize: "3vh" }}>
+                <b><u>Filter by Category</u></b>
+                </h6>
+          <div >
+      
+            {categories?.map((c) => (
+              <div className="d-flex flex-coloumn ms-2" key={c._id}>
+                <Checkbox
+                  className={`text-${
+                    props.mode === "light" ? "dark" : "light"
+                  }`}
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              </div>
+            ))}
+            <h6 className={`text-center mt-4 text-${
+                props.mode === "light" ? "dark" : "light"
+              }`} style={{ fontSize: "3vh" }}>
+            <b><u>Filter by Prices</u></b>
+          </h6>
+            <div className="d-flex flex-coloumn ms-2">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio
                       className={`text-${
                         props.mode === "light" ? "dark" : "light"
                       }`}
-                      key={c._id}
-                      onChange={(e) => handleFilter(e.target.checked, c._id)}
+                      value={p.array}
                     >
-                      {c.name}
-                    </Checkbox>
+                      {p.name}
+                    </Radio>
                   </div>
                 ))}
-                <h6 className={`text-center mt-4 `} style={{ fontSize: "3vh" }}>
-                  <b>
-                    <u
-                      className={`text-center text-${
-                        props.mode === "light" ? "dark" : "light"
-                      }`}
-                    >
-                      Filter by Prices
-                    </u>
-                  </b>
-                </h6>
-                <div className="d-flex flex-coloumn ms-2">
-                  <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                    {Prices?.map((p) => (
-                      <div key={p._id}>
-                        <Radio
-                          className={`text-${
-                            props.mode === "light" ? "dark" : "light"
-                          }`}
-                          value={p.array}
-                        >
-                          {p.name}
-                        </Radio>
-                      </div>
-                    ))}
-                  </Radio.Group>
-                </div>
-                {checked.length || radio.length ? (
-                  <div className="d-flex flex-coloumn ms-2">
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => window.location.reload()}
-                    >
-                      RESET FILTER
-                    </button>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
+              </Radio.Group>
             </div>
+            {checked.length || radio.length ? (
+              <div className="d-flex flex-coloumn ms-2">
+                <button
+                  className="btn btn-danger"
+                  onClick={() => window.location.reload()}
+                >
+                  RESET FILTER
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+  </div>
+</div>
+
+
+            
           </div>
           <div className="col-md-12">
-            <hr className="custom-hr mb-0" />
-            <div
-              id="carouselExampleAutoplaying"
-              className="carousel slide mb-5 "
-              data-bs-ride="carousel"
-            >
-              <div className="carousel-inner ">
-                <div className="carousel-item active">
-                  <img
-                    src="https://i.postimg.cc/ryhm3P0f/Untitled-1.png"
-                    className="d-block img-fluid mx-auto"
-                    alt="Carousel-1"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://i.postimg.cc/mrNBpt6b/carousel-1.jpg"
-                    className="d-block  mx-auto"
-                    alt="Carousel-2"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://i.postimg.cc/HWrFVr4V/carousel-3.webp"
-                    className="d-block  mx-auto"
-                    alt="Carousel-3"
-                  />
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Previous</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Next</span>
-              </button>
-            </div>
-
-            <div className="d-flex flex-wrap text-darks">
+          <hr class="custom-hr mb-0"/> 
+          <div id="carouselExampleAutoplaying" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner ">
+    <div class="carousel-item active">
+      <img src="https://i.postimg.cc/ryhm3P0f/Untitled-1.png" class="d-block img-fluid mx-auto" alt="Carousel-1" />
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/mrNBpt6b/carousel-1.jpg" class="d-block  mx-auto" alt="Carousel-2" />
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.postimg.cc/HWrFVr4V/carousel-3.webp" class="d-block  mx-auto" alt="Carousel-3"/>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+           
+            
+            <div className="d-flex flex-wrap">
               {products?.map((p) => (
                 <div
                   className={`card m-2 bg-${props.mode}`}
