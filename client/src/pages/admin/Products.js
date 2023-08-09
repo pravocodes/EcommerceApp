@@ -16,7 +16,7 @@ const notyf = new Notyf({
   },
 });
 
-const Products = () => {
+const Products = (props) => {
   const [products, setProduct] = useState([]);
   const getAllProducts = async () => {
     try {

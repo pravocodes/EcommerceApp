@@ -6,15 +6,15 @@ import Header from "../../components/Layouts/Header";
 import Footer from "../../components/Layouts/Footer";
 import { motion } from "framer-motion";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const { auth } = useAuth();
 
   return (
     <>
       <Layout title="EzCart - Dashboard" />
-      
+
       <motion.div
-        className="container-fluid m-3 p-3"
+        className={`container-fluid  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}

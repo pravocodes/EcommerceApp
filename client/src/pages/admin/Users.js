@@ -14,7 +14,7 @@ const notyf = new Notyf({
   },
 });
 
-const Users = () => {
+const Users = (props) => {
   const [users, setUser] = useState([]);
   const getAllUsers = async () => {
     try {
@@ -43,9 +43,9 @@ const Users = () => {
   return (
     <>
       <Layout title="EzCart - Users" />
-     
+
       <motion.div
-        className="container-fluid m-3 p-3"
+        className={`container-fluid  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}

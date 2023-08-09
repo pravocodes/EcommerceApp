@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <>
-      
       <Layout title="EzCart - About Us" />
 
       <motion.div
@@ -17,8 +16,8 @@ const About = () => {
         animate={{ width: "100%" }}
         exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
       >
-        <div class="about-container">
-          <div class="about-box">
+        <div className="about-container">
+          <div className="about-box">
             <div className="left"></div>
             <div className="right">
               <h2 className="about-heading" style={{ fontSize: "27px" }}>

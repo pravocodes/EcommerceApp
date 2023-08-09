@@ -107,7 +107,7 @@ const Header = (props) => {
               </>
             ) : (
               <>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <NavLink
                     className="nav-link dropdown-toggle"
                     to="/"
@@ -119,14 +119,15 @@ const Header = (props) => {
                     {auth?.user?.name}
                   </NavLink>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
                       <NavLink
                         className="dropdown-item"
-                        to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"
-                          }`}
+                        to={`/dashboard/${
+                          auth?.user?.role === 1 ? "admin" : "user"
+                        }`}
                       >
                         Dashboard
                       </NavLink>
@@ -153,15 +154,19 @@ const Header = (props) => {
             </li>
           </ul>
         </div>
-        <div className='dark_mode'>
+        <div className="dark_mode">
           <input
-            className='dark_mode_input'
-            type='checkbox'
-            id='flexSwitchCheckDefault'
+            className="dark_mode_input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
             onChange={props.ChangeMode}
           />
-          <label className={`dark_mode_label form-check-label text-${props.mode === "light" ? "dark" : "light"
-            }`} for='flexSwitchCheckDefault'>
+          <label
+            className={`dark_mode_label form-check-label text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+            htmlFor="flexSwitchCheckDefault"
+          >
             <Sun />
             <Moon />
           </label>
