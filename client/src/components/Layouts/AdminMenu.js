@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const AdminMenu = () => {
   return (
     <>
-      <div className="text-center">
+      <div className="text-center" style={{position:'fixed', minWidth:'300px'}}>
         <div className="list-group" style={{fontSize:"20px"}}>
           <h1>Admin Panel</h1>
           <br />
