@@ -48,23 +48,32 @@ const AnimatedRoute = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/categories" element={<Categories mode={mode} />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
-        <Route path="/shop" element={<CartPage />} />
+        <Route path="/shop" element={<CartPage mode={mode} />} />
         <Route
           path="/category/:slug"
           element={<CategoryProduct mode={mode} />}
         />
         <Route path="/dashboard" element={<Private />}>
-          <Route path="user" element={<Dashboard />} />
-          <Route path="user/profile" element={<UserProfile />} />
-          <Route path="user/orders" element={<UserOrders />} />
+          <Route path="user" element={<Dashboard mode={mode} />} />
+          <Route path="user/profile" element={<UserProfile mode={mode} />} />
+          <Route path="user/orders" element={<UserOrders mode={mode} />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard mode={mode} />} />
-          <Route path="admin/create-category" element={<CreateCategory mode={mode}/>} />
-          <Route path="admin/create-product" element={<CreateProduct />} />
-          <Route path="admin/product/:slug" element={<UpdateProduct />} />
-          <Route path="admin/products" element={<Products />} />
-          <Route path="admin/users" element={<Users />} />
+          <Route
+            path="admin/create-category"
+            element={<CreateCategory mode={mode} />}
+          />
+          <Route
+            path="admin/create-product"
+            element={<CreateProduct mode={mode} />}
+          />
+          <Route
+            path="admin/product/:slug"
+            element={<UpdateProduct mode={mode} />}
+          />
+          <Route path="admin/products" element={<Products mode={mode} />} />
+          <Route path="admin/users" element={<Users mode={mode} />} />
           <Route path="admin/orders" element={<AdminOrders mode={mode} />} />
         </Route>
         <Route path="/about" element={<About />} />

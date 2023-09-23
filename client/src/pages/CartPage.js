@@ -18,7 +18,7 @@ const notyf = new Notyf({
   },
 });
 
-const CartPage = () => {
+const CartPage = (props) => {
   const { auth, setAuth } = useAuth();
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
@@ -102,19 +102,24 @@ const CartPage = () => {
   };
   return (
     <>
-      <Header />
       <Layout title="EzCart - Cart" />
 
       <motion.main
+        className={`container-fluid  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
         exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
       >
-        <div className="container">
+        <div
+          className="container"
+          style={{
+            color: props.mode === "light" ? "black" : "white",
+          }}
+        >
           <div className="row">
             <div className="col-md-12">
-              <h1 className="text-center bg-light p-2 mb-1">
+              <h1 className={`text-center bg-${props.mode} p-2 mb-1`}>
                 {`Hello ${auth?.token && auth?.user?.name}`}
               </h1>
               <h4 className="text-center">
@@ -129,7 +134,7 @@ const CartPage = () => {
           <div className="row">
             <div className="col-md-8">
               {cart?.map((p) => (
-                <div className="row mb-2 p-3 card flex-row">
+                <div className="row mb-2 p-3 card flex-row" key={p._id}>
                   <div className="col-md-4">
                     <img
                       src={`/api/v1/product/product-photo/${p._id}`}

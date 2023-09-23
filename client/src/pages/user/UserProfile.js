@@ -9,7 +9,7 @@ import axios from "axios";
 import { Notyf } from "notyf";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-const UserProfile = () => {
+const UserProfile = (props) => {
   const { auth, setAuth } = useAuth();
 
   const [name, setName] = useState("");
@@ -65,20 +65,27 @@ const UserProfile = () => {
   };
   return (
     <>
-  
       <Layout title="Your Profile" />
       <motion.div
-        className="container-fluid m-3 p-3 dashboard"
+        className={`container-fluid bg-${props.mode} pt-3 dashboard`}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
         exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
       >
-        <div className="row">
+        <div
+          className="row"
+          style={{
+            color: props.mode === "light" ? "black" : "white",
+          }}
+        >
           <div className="col-md-3">
             <UserMenu />
           </div>
           <div className="col-md-8">
-            <div className="form-container" style={{ marginTop: "-40px" }}>
+            <div
+              className="form-container"
+              style={{ marginTop: "-40px", minHeight: "100vh" }}
+            >
               <form onSubmit={handleSubmit}>
                 <h4 className="title">USER PROFILE</h4>
                 <div className="mb-3">
@@ -142,7 +149,6 @@ const UserProfile = () => {
           </div>
         </div>
       </motion.div>
-
       <Footer />
     </>
   );

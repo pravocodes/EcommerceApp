@@ -51,7 +51,9 @@ const ProductDetails = () => {
         <div className="row container mt-2">
           <div className="col-md-6">
             <img
-              src={`/api/v1/product/product-photo/${product._id?product._id:""}`}
+              src={`/api/v1/product/product-photo/${
+                product._id ? product._id : ""
+              }`}
               className="card-img-top"
               alt={product.name}
               height="300"
@@ -59,7 +61,9 @@ const ProductDetails = () => {
             />
           </div>
           <div className="col-md-6 ">
-            <h1 className="text-center" style={{fontWeight: "600"} } ><u>Product Details</u></h1>
+            <h1 className="text-center" style={{ fontWeight: "600" }}>
+              <u>Product Details</u>
+            </h1>
             <h6>Name : {product.name}</h6>
             <h6>Description : {product.description}</h6>
             <h6>Price : {product.price}</h6>
@@ -93,7 +97,9 @@ const ProductDetails = () => {
                   >
                     More Details
                   </button>
-                  <button className="btn btn-secondary ms-1">ADD TO CART</button>
+                  <button className="btn btn-secondary ms-1">
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}

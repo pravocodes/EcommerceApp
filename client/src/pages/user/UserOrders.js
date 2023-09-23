@@ -8,7 +8,7 @@ import { useAuth } from "../../context/Auth";
 import moment from "moment";
 import { motion } from "framer-motion";
 
-const UserOrders = () => {
+const UserOrders = (props) => {
   const [orders, setOrders] = useState([]);
   const { auth, setAuth } = useAuth();
   const getOrders = async () => {
@@ -26,14 +26,20 @@ const UserOrders = () => {
   return (
     <>
       <Layout title="EzCart - About Us" />
-      
+
       <motion.main
+        className={`container-fluid  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
         exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
       >
-        <div className="container-flui p-3 m-3 dashboard">
+        <div
+          className="container-flui p-3 m-3 dashboard"
+          style={{
+            color: props.mode === "light" ? "black" : "white",
+          }}
+        >
           <div className="row">
             <div className="col-md-3">
               <UserMenu />

@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 const Policy = () => {
   return (
     <>
-      
       <Layout title="EzCart - Policy" />
       <motion.div
         intial={{ width: 0 }}

@@ -18,7 +18,7 @@ const notyf = new Notyf({
 });
 
 const { Option } = Select;
-const CreateProduct = () => {
+const CreateProduct = (props) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
@@ -79,9 +79,9 @@ const CreateProduct = () => {
   return (
     <>
       <Layout title="EzCart - Create Product" />
-      
+
       <motion.div
-        className="container-fluid m-3 p-3"
+        className={`container-fluid  bg-${props.mode} pt-3`}
         style={{ minHeight: "100vh" }}
         intial={{ width: 0 }}
         animate={{ width: "100%" }}
