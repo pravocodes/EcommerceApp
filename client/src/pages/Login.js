@@ -8,6 +8,8 @@ import { Notyf } from "notyf";
 import { useAuth } from "../context/Auth";
 import Layout from "../components/Layouts/Layout";
 import { motion } from "framer-motion";
+
+
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -66,7 +68,7 @@ const Login = () => {
                 onChange={(e) => setemail(e.target.value)}
               />
               <span>Email</span>
-              <i></i>
+              
             </div>
             <div className="inputbox">
               <input
@@ -82,7 +84,7 @@ const Login = () => {
               <Link to="/forgot-password">Forgot Password</Link>
               <Link to="/register">Sign Up</Link>
             </div>
-            <input type="submit" value="Login" onClick={handlesubmit}></input>
+            <input type ="submit" value="Login" onClick={handlesubmit}></input>
           </form>
         </div>
       </motion.main>

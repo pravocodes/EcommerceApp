@@ -130,147 +130,193 @@ const HomePage = (props) => {
         exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
       >
         <div className="row mt-3">
-<div >
-
-
-          <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> FILTERS </button>
+          <div>
+            <button
+              class="btn btn-primary "
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWithBothOptions"
+              aria-controls="offcanvasWithBothOptions"
+            >
+              {" "}
+              FILTERS{" "}
+            </button>
           </div>
-          <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+          <div
+            class="offcanvas offcanvas-start"
+            data-bs-scroll="true"
+            tabindex="-1"
+            id="offcanvasWithBothOptions"
+            aria-labelledby="offcanvasWithBothOptionsLabel"
+          >
             <div class="offcanvas-header">
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
             </div>
             <div class="offcanvas-body">
-                <h6  className={`text-center text-${
-                props.mode === "light" ? "dark" : "light"
-              }`} style={{ fontSize: "3vh" }}>
-                <b><u>Filter by Category</u></b>
-                </h6>
-          <div >
-      
-            {categories?.map((c) => (
-              <div className="d-flex flex-coloumn ms-2" key={c._id}>
-                <Checkbox
-                  className={`text-${
-                    props.mode === "light" ? "dark" : "light"
-                  }`}
-                  key={c._id}
-                  onChange={(e) => handleFilter(e.target.checked, c._id)}
-                >
-                  {c.name}
-                </Checkbox>
-              </div>
-            ))}
-            <h6 className={`text-center mt-4 text-${
-                props.mode === "light" ? "dark" : "light"
-              }`} style={{ fontSize: "3vh" }}>
-            <b><u>Filter by Prices</u></b>
-          </h6>
-            <div className="d-flex flex-coloumn ms-2">
-              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                {Prices?.map((p) => (
-                  <div key={p._id}>
-                    <Radio
+              <h6
+                className={`text-center text-${
+                  props.mode === "light" ? "dark" : "light"
+                }`}
+                style={{ fontSize: "3vh" }}
+              >
+                <b>
+                  <u>Filter by Category</u>
+                </b>
+              </h6>
+              <div>
+                {categories?.map((c) => (
+                  <div className="d-flex flex-coloumn ms-2" key={c._id}>
+                    <Checkbox
                       className={`text-${
                         props.mode === "light" ? "dark" : "light"
                       }`}
-                      value={p.array}
+                      key={c._id}
+                      onChange={(e) => handleFilter(e.target.checked, c._id)}
                     >
-                      {p.name}
-                    </Radio>
+                      {c.name}
+                    </Checkbox>
                   </div>
                 ))}
-              </Radio.Group>
-            </div>
-            {checked.length || radio.length ? (
-              <div className="d-flex flex-coloumn ms-2">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => window.location.reload()}
+                <h6
+                  className={`text-center mt-4 text-${
+                    props.mode === "light" ? "dark" : "light"
+                  }`}
+                  style={{ fontSize: "3vh" }}
                 >
-                  RESET FILTER
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
-  </div>
-</div>
-
-
-            
-          </div>
-          <div className="col-md-12">
-          <hr class="custom-hr mb-0"/> 
-          <div id="carouselExampleAutoplaying" class="carousel slide mb-5" data-bs-ride="carousel">
-  <div class="carousel-inner ">
-    <div class="carousel-item active">
-      <img src="https://i.postimg.cc/ryhm3P0f/Untitled-1.png" class="d-block img-fluid mx-auto" alt="Carousel-1" />
-    </div>
-    <div class="carousel-item">
-      <img src="https://i.postimg.cc/mrNBpt6b/carousel-1.jpg" class="d-block  mx-auto" alt="Carousel-2" />
-    </div>
-    <div class="carousel-item">
-      <img src="https://i.postimg.cc/HWrFVr4V/carousel-3.webp" class="d-block  mx-auto" alt="Carousel-3"/>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-           
-            
-            <div className="d-flex flex-wrap">
-              {products?.map((p) => (
-                <div
-                  className={`card m-2 bg-${props.mode}`}
-                  style={{ width: "17rem" }}
-                  key={p._id}
-                >
-                  <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
-                  <div
-                    className={`card-body text-${
-                      props.mode === "light" ? "dark" : "light"
-                    }`}
-                  >
-                    <h5 className="card-title">{p.name}</h5>
-                    {/* <p className="card-text">
-                      {p.description.substring(0, 30)}
-                    </p> */}
-                    <p className="card-text">${p.price}</p>
-                    <p className="card-text">
-                      Shipping: {p.shipping ? "Yes" : "No"}
-                    </p>
+                  <b>
+                    <u>Filter by Prices</u>
+                  </b>
+                </h6>
+                <div className="d-flex flex-coloumn ms-2">
+                  <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                    {Prices?.map((p) => (
+                      <div key={p._id}>
+                        <Radio
+                          className={`text-${
+                            props.mode === "light" ? "dark" : "light"
+                          }`}
+                          value={p.array}
+                        >
+                          {p.name}
+                        </Radio>
+                      </div>
+                    ))}
+                  </Radio.Group>
+                </div>
+                {checked.length || radio.length ? (
+                  <div className="d-flex flex-coloumn ms-2">
                     <button
-                      className="btn btn-primary ms-1"
-                      onClick={() => navigate(`/product/${p.slug}`)}
+                      className="btn btn-danger"
+                      onClick={() => window.location.reload()}
                     >
-                      More Details
-                    </button>
-                    <button
-                      className="btn btn-secondary  ms-1"
-                      onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        notyf.success("product added successfully");
-                      }}
-                    >
-                      Add to Cart
+                      RESET FILTER
                     </button>
                   </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="col-md-12">
+            <hr class="custom-hr mb-0" />
+            <div
+              id="carouselExampleAutoplaying"
+              class="carousel slide mb-5"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner ">
+                <div class="carousel-item active">
+                  <img
+                    src="https://i.postimg.cc/ryhm3P0f/Untitled-1.png"
+                    class="d-block img-fluid mx-auto"
+                    alt="Carousel-1"
+                  />
                 </div>
-              ))}
+                <div class="carousel-item">
+                  <img
+                    src="https://i.postimg.cc/mrNBpt6b/carousel-1.jpg"
+                    class="d-block  mx-auto"
+                    alt="Carousel-2"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://i.postimg.cc/HWrFVr4V/carousel-3.webp"
+                    class="d-block  mx-auto"
+                    alt="Carousel-3"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+
+            <div id="product1">
+              <div className="p-cont">
+                {products?.map((p) => (
+                  <div className="pro" key={p._id}>
+                    <img
+                      src={`/api/v1/product/product-photo/${p._id}`}
+                      alt={p.name}
+                    />
+                    <div className="desc">
+                      <h5>{p.name}</h5>
+                      {/* <span>{p.description.substring(0, 30)}</span> */}
+                      <h4>${p.price}</h4>
+                      <span>Shipping Available: {p.shipping ? "Yes" : "No"}</span>
+                     <div className="buttons">
+                      <button
+                        className="cart"
+                        onClick={() => navigate(`/product/${p.slug}`)}
+                      >
+                        More Details
+                      </button>
+                      <button
+                        className="cart"
+                        onClick={() => {
+                          setCart([...cart, p]);
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart, p])
+                          );
+                          notyf.success("Product added successfully");
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

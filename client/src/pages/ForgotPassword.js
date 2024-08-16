@@ -45,7 +45,6 @@ const ForgotPassword = () => {
   };
   return (
     <>
-      
       <Layout title="EzCart - Forgot Password" />
       <motion.main
         className="log-back"

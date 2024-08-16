@@ -67,7 +67,7 @@ export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     //validation
-    if (!email || !password) {
+    if (!email || !password) {    
       return res.status(404).send({
         success: false,
         message: "Invalid email or password",
@@ -113,7 +113,7 @@ export const loginController = async (req, res) => {
       error,
     });
   }
-};
+};;
 
 //forgotPasswordController
 
